@@ -1,0 +1,13 @@
+test:
+  override:
+    - ./manage.py test --settings=project.settings.dev
+
+deployment:
+  prod:
+    branch: master
+    heroku:
+      appname: jass-prod
+  staging:
+    branch: staging
+    heroku:
+      appname: jass-staging

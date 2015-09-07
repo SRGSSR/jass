@@ -21,8 +21,6 @@ ROOT_PATH = os.path.dirname(PROJECT_PATH)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
 from ..utils import get_env_variable
 # Will look in os.environ first, and if None is returned, will look at .env file.
 
@@ -38,6 +36,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'meta',
+    'djangobower',
+    'project.jass'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -53,17 +55,10 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'project.urls'
 
-TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows. Don't forget to use absolute paths, not relative paths.
-    TEMPLATE_PATH,
-)
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_PATH,],
+        'DIRS': [os.path.join(PROJECT_PATH, 'templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -103,4 +98,31 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
+ALLOWED_HOSTS = ['*']
+
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
+
+STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
+STATICFILES_DIRS = (
+    STATIC_PATH,
+)
+
+# List of finder classes that know how to find static files in various locations.
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'djangobower.finders.BowerFinder',
+)
+
+BOWER_COMPONENTS_ROOT = os.path.join(ROOT_PATH, 'components')
+BOWER_INSTALLED_APPS = (
+    'jquery',
+    'underscore',
+    'bootstrap-social',
+    'bootstrap-select',
+    'angular',
+    'angular-route',
+    'angular-resource',
+)
