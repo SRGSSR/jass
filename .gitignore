@@ -59,4 +59,5 @@ target/
 .env
 .idea
 staticfiles
+components
 

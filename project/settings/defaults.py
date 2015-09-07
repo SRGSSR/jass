@@ -20,6 +20,7 @@ ROOT_PATH = os.path.dirname(PROJECT_PATH)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+SITE_ID = 1  # Local=1, Staging=2, Prod=3
 
 from ..utils import get_env_variable
 # Will look in os.environ first, and if None is returned, will look at .env file.
