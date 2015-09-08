@@ -5,14 +5,10 @@ from project.jass import models
 from project.jass import serializers
 
 
-class InputRequestListAPIView(generics.ListAPIView):
+class InputRequestListAPIView(generics.ListCreateAPIView):
     queryset = models.InputRequest.objects.all()
     serializer_class = serializers.InputRequestSerializer
 
 class InputRequestDetailAPIView(generics.RetrieveAPIView):
-    queryset = models.InputRequest.objects.all()
-    serializer_class = serializers.InputRequestSerializer
-
-class InputRequestCreateAPIView(generics.CreateAPIView):
     queryset = models.InputRequest.objects.all()
     serializer_class = serializers.InputRequestSerializer
