@@ -9,4 +9,5 @@ else:
 
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 )
