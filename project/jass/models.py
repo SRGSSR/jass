@@ -24,21 +24,6 @@ class InputRequest(models.Model):
     METHOD_CHOICES = tuple(zip(METHOD_KEYS, METHOD_VALUES))
     method = models.CharField(max_length=10, blank=True, choices=METHOD_CHOICES, default=METHOD_UNKNOWN)
 
-    DEVICE_UNKNOWN = "UNKNOWN"
-    DEVICE_IPHONE = "iPhone"
-    DEVICE_MAC = "Macintosh"
-
-    DEVICE_KEYS = (
-        DEVICE_UNKNOWN,
-        DEVICE_IPHONE,
-        DEVICE_MAC
-    )
-
-    DEVICE_VALUES = DEVICE_KEYS
-    DEVICE_CHOICES = tuple(zip(DEVICE_KEYS, DEVICE_VALUES))
-    device = models.CharField(max_length=10, blank=True, choices=DEVICE_CHOICES, default=DEVICE_UNKNOWN)
-
-
 
 class RequestHeader(models.Model):
     key = models.CharField(max_length=10000, null=True, blank=True)
