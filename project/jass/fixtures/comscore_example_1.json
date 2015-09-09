@@ -1,0 +1,40 @@
+{
+	"url": "http://b.scorecardresearch.com/p?c1=19&c2=6036016&ns_site=mainsite&ns_vsite=rts-v&ns_ap_an=instance2010&ns_ap_pv=18%2C0%2C0%2C232&ns_ap_pn=as3&c12=8e7f72fe7790ba66525f87c6aeacadf6-cs72&name=background&ns_ap_ec=5&ns_ap_ev=hidden&ns_ap_device=Adobe%20Macintosh&ns_ap_id=-1&ns_ap_bi=&ns_ap_pfm=PlugIn&ns_ap_pfv=18%2C0%2C0%2C232&ns_ap_ver=unknown&ns_ap_sv=2.1311.14&ns_type=hidden&ns_st_sv=4.1311.19&ns_st_it=c&ns_st_id=1441804792418_1&ns_st_ec=2&ns_st_sp=1&ns_st_cn=1&ns_st_ev=hb&ns_st_po=40089&ns_st_cl=2334640&ns_st_el=2334640&ns_st_hc=4&ns_st_mp=portal-detail&ns_st_mv=1.19.1&ns_st_pn=1&ns_st_tp=8&ns_st_pt=40089&ns_st_pa=40089&ns_st_li=0&ns_st_ci=7068593&ns_ap_res=NaNxNaN&ns_ap_lang=en&ns_ts=1441804833709&ns_st_pe=1&ns_st_bt=0&ns_st_bp=0&ns_st_pc=0&ns_st_pp=0&ns_st_br=0&ns_st_ub=0&ns_st_pl=A%20Bon%20Entendeur&ns_st_pr=A%20Bon%20Entendeur%20du%2008.09.2015&ns_st_ep=La%20st%C3%A9via%3A%20le%20bon%20sucre%20vert%3F&ns_st_ty=Video&ns_st_dt=2015-09-08&c7=http%3A%2F%2Ftp.srgssr.ch%2Fp%2Frts%2Fportal-detail%3Furn%3Durn%3Arts%3Avideo%3A7068593%26autoplay%3Dtrue%23srg_player_technical_player&c8=SRG%20Player&c9=http%3A%2F%2Fwww.rts.ch%2Fplay%2Ftv%2Fa-bon-entendeur%2Fvideo%2Fla-stevia-le-bon-sucre-vert%3Fid%3D7068593&srg_c3=RTS%20Un&srg_c2=video_emissions_abe&srg_plid=385418&srg_mgeobl=false&srg_unit_c=RTS&srg_pr_id=6969194&srg_mqual=hd&srg_c1=full&srg_tv_id=885783&srg_ptype=flash&srg_unit=RTS",
+	"headers": [
+		{
+			"value": "b.scorecardresearch.com",
+			"key": "Host"
+		},
+		{
+			"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:39.0) Gecko/20100101 Firefox/39.0",
+			"key": "User-Agent"
+		},
+		{
+			"value": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+			"key": "Accept"
+		},
+		{
+			"value": "en-US,en;q=0.5",
+			"key": "Accept-Language"
+		},
+		{
+			"value": "gzip, deflate",
+			"key": "Accept-Encoding"
+		},
+		{
+			"value": "http://tp.srgssr.ch/assets/lib/srg-technical-player/dd0bf460cd49cfd97afe420c1c200182-player.swf",
+			"key": "Referer"
+		},
+		{
+			"value": "UID=151c528c-88.221.83.66-1420447919; UIDR=1420447919",
+			"key": "Cookie"
+		},
+		{
+			"value": "keep-alive",
+			"key": "Connection"
+		}
+	],
+	"sessionid": "151c528c-88.221.83.66-1420447919",
+	"method": "GET",
+	"user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:39.0) Gecko/20100101 Firefox/39.0"
+}

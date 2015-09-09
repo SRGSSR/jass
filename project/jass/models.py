@@ -1,11 +1,12 @@
 from django.db import models
 
-# Create your models here.
+# Check https://github.com/ua-parser/uap-python
+# http://werkzeug.pocoo.org/docs/0.10/utils/#url-helpers
 
 class InputRequest(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     origin = models.CharField(max_length=25, null=True, blank=True)
-    url = models.URLField(null=True, blank=True)
+    url = models.URLField(max_length=2000, null=True, blank=True)
     data = models.CharField(max_length=10000, null=True, blank=True)
     sessionid = models.CharField(max_length=100, null=True, blank=True)
     user_agent = models.CharField(max_length=200, null=True, blank=True)
