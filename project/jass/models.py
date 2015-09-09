@@ -7,6 +7,8 @@ class InputRequest(models.Model):
     origin = models.CharField(max_length=25, null=True, blank=True)
     url = models.URLField(null=True, blank=True)
     data = models.CharField(max_length=10000, null=True, blank=True)
+    sessionid = models.CharField(max_length=100, null=True, blank=True)
+    user_agent = models.CharField(max_length=200, null=True, blank=True)
 
     METHOD_UNKNOWN = "UNKNOWN"
     METHOD_GET = "GET"
@@ -24,10 +26,12 @@ class InputRequest(models.Model):
 
     DEVICE_UNKNOWN = "UNKNOWN"
     DEVICE_IPHONE = "iPhone"
+    DEVICE_MAC = "Macintosh"
 
     DEVICE_KEYS = (
         DEVICE_UNKNOWN,
         DEVICE_IPHONE,
+        DEVICE_MAC
     )
 
     DEVICE_VALUES = DEVICE_KEYS
