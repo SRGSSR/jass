@@ -1,0 +1,30 @@
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+body {
+    margin: 0;
+}
+
+.no-inputrequests-here {
+  text-align: center;
+}
+
+.inputrequest {}
+
+.inputrequest .inputrequest__meta {
+  font-weight: bold;
+  text-align: right;
+  padding-bottom: 19px;
+}
+
+.inputrequest .inputrequest__meta a:hover {
+  text-decoration: none;
+}
+
+.btn-add-new-inputrequest {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}

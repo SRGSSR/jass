@@ -121,9 +121,11 @@ BOWER_COMPONENTS_ROOT = os.path.join(ROOT_PATH, 'components')
 BOWER_INSTALLED_APPS = (
     'jquery',
     'underscore',
-    'bootstrap-social',
-    'bootstrap-select',
+    'bootstrap',
     'angular',
     'angular-route',
     'angular-resource',
+    'angular-cookies',
+    'ngDialog',
+    'snackbarjs'
 )

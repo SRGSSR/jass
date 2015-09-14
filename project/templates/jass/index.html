@@ -1,6 +1,7 @@
-{% extends 'jass/base-navbar.html' %}
+{% extends 'jass/base.html' %}
 
 {% block body_block %}
+    {% include 'jass/navbar.html' %}
 
     <div id="wrap">
         <div id="main" class="container clear-top">
@@ -10,6 +11,12 @@
                     Just Another Statistics Sniffer
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 ng-view"></div>
         </div>
     </div>
 
