@@ -6,7 +6,7 @@ from project.jass import serializers
 
 
 class InputRequestListAPIView(generics.ListCreateAPIView):
-    queryset = models.InputRequest.objects.all()
+    queryset = models.InputRequest.objects.all().order_by('-date')
     serializer_class = serializers.InputRequestSerializer
 
 class InputRequestDetailAPIView(generics.RetrieveAPIView):
