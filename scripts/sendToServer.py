@@ -26,7 +26,8 @@ def request(context, flow):
         payload = {
             "method": flow.request.method.upper(),
             "url": flow.request.url.strip(),
-            "headers": headers
+            "headers": headers,
+            "origin": flow.client_conn.address.host
         }
 
         if user_agent is not None:
@@ -36,10 +37,5 @@ def request(context, flow):
         if cookies is not None and len(cookies.get("UID")) > 0:
             payload['sessionid'] = cookies.get("UID")[0]
 
-        print ' JASS >> ', payload
         r = requests.post("http://jass-prod.herokuapp.com/api/inputrequests/", json=payload)
-        print ' JASS >> ', r.status_code
-        # print dir(flow.request)
-        print 80*"-"
-
-    # print dir(flow.request)
+        print 10*'-', r.status_code, 80*"-"
