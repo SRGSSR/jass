@@ -3,7 +3,17 @@ from django.db import models
 # Check https://github.com/ua-parser/uap-python
 # http://werkzeug.pocoo.org/docs/0.10/utils/#url-helpers
 
+# https://docs.djangoproject.com/en/1.8/topics/db/managers/
+class InputRequestManger(models.Manager):
+    def get_queryset(self):
+        return super(InputRequestManger, self).get_queryset().order_by('-date')
+
+    def get_comScore_queryset(self):
+        return self.get_queryset().filter(url__contains='b.scorecardresearch.com')
+
 class InputRequest(models.Model):
+    objects = InputRequestManger()
+
     date = models.DateTimeField(auto_now_add=True)
     origin = models.CharField(max_length=25, null=True, blank=True)
     url = models.URLField(max_length=2000, null=True, blank=True)
@@ -24,6 +34,7 @@ class InputRequest(models.Model):
     METHOD_VALUES = METHOD_KEYS
     METHOD_CHOICES = tuple(zip(METHOD_KEYS, METHOD_VALUES))
     method = models.CharField(max_length=10, blank=True, choices=METHOD_CHOICES, default=METHOD_UNKNOWN)
+
 
 
 class RequestHeader(models.Model):
