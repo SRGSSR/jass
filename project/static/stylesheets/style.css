@@ -7,6 +7,10 @@ body {
     margin: 0;
 }
 
+.jumbotron {
+    margin-top: 80px;
+}
+
 #content {
     margin-top: 80px;
 }
