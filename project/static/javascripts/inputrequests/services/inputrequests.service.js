@@ -20,6 +20,7 @@
             all: all,
             create: create,
             get: get
+
         };
 
         return InputRequests;
@@ -32,8 +33,21 @@
          * @returns {Promise}
          * @memberOf jass.inputrequests.services.InputRequests
          */
-        function all() {
-            return $http.get('/api/inputrequests/');
+        function all(method, hostname) {
+            var url =  '/api/inputrequests/';
+            if (method !== undefined || hostname !== undefined) {
+                url += "?";
+                if (method !== undefined) {
+                    url += 'method='+method;
+                    if (hostname !== undefined) {
+                        url += '&';
+                    }
+                }
+                if (hostname !== undefined) {
+                    url += 'hostname='+hostname;
+                }
+            }
+            return $http.get(url);
         }
 
 

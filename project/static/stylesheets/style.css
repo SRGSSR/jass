@@ -7,28 +7,50 @@ body {
     margin: 0;
 }
 
-.jumbotron {
+#content {
     margin-top: 80px;
 }
 
 .no-inputrequests-here {
-  text-align: center;
+    text-align: center;
 }
 
 .inputrequest {}
 
 .inputrequest .inputrequest__meta {
-  font-weight: bold;
-  text-align: right;
-  padding-bottom: 19px;
+    font-weight: bold;
+    text-align: left;
+    font-size: larger;
+    padding-bottom: 19px;
+}
+
+.inputrequest .inputrequest__submeta {
+    font-weight: normal;
+    color: #595959;
 }
 
 .inputrequest .inputrequest__meta a:hover {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .btn-add-new-inputrequest {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+th {
+    width: 150px;
+}
+
+table, th , td {
+    border: 1px solid grey;
+    border-collapse: collapse;
+    padding: 5px;
+}
+table tr:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+    background-color: #ffffff;
 }

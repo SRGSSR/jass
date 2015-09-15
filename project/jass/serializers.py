@@ -6,17 +6,6 @@ class RequestHeaderSerializer(serializers.ModelSerializer):
         model = RequestHeader
         fields = ('key', 'value')
 
-    def to_representation(self, instance):
-        return {instance.key: instance.value}
-
-
-class HeaderSerializerField(serializers.Field):
-    def to_representation(self, obj):
-        return {str(item.get()): item.get().value for item in obj}
-
-class HeaderSerializerDictField(serializers.DictField):
-    child = HeaderSerializerField()
-
 class InputRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = InputRequest
