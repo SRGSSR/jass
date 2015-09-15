@@ -1,38 +1,43 @@
 <div class="row">
     <div class="col-sm-12">
-        <div class="well">
-            <div class="inputrequest">
-                <div class="inputrequest__meta">
-                    comScore request <a href="/{{ inputrequest.id }}">#{{ inputrequest.id }}</a>
-                    <span class="inputrequest__submeta">at {{ inputrequest.date }}</span>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>comScore request <a href="/{{ inputrequest.id }}">#{{ inputrequest.id }}</a></strong>
+                <span class="inputrequest__submeta">at {{ inputrequest.date }}</span> from (IP) {{ inputrequest.origin }}<br/>
+            </div>
+
+            <div class="panel-body">
+                <strong>User-agent:</strong> {{ inputrequest.user_agent }}<br/>
+                <strong>Session ID:</strong> {{ inputrequest.sessionid }}<br/>
+
+                <div class="collapse-group">
+                    <strong>Headers <a class="btn btn-xs btn-default btn-details" href="#">details &raquo;</a></strong>
+                    <div class="collapse">
+                        <table class="collapse" border="0">
+                            <tr ng-repeat="header in inputrequest.headers">
+                                <td>{{ header.key }}</td>
+                                <td>{{ header.value }}</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
 
-                <div class="inputrequest__content">
-                    <strong>From (IP):</strong> {{ inputrequest.origin }}<br/>
-                    <strong>User-agent:</strong> {{ inputrequest.user_agent }}<br/>
-                    <strong>Session ID:</strong> {{ inputrequest.sessionid }}<br/>
+                <div class="collapse-group">
+                    <strong>Request Arguments: <a class="btn btn-xs btn-default btn-details" href="#">details &raquo;</a></strong>
+                    <div class="collapse">
+                        <table class="collapse" border="0">
+                            <tr ng-repeat="argument in inputrequest.request_arguments">
+                                <td>{{ argument.key }}</td>
+                                <td>{{ argument.value }}</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
 
-                <div class="inputrequest__content">
-                    <table>
-                        <th>Headers:</th>
-                        <tr ng-repeat="header in inputrequest.headers">
-                            <td>{{ header.key }}</td>
-                            <td>{{ header.value }}</td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="inputrequest__content">
-                    <table>
-                        <th>Arguments:</th>
-                        <tr ng-repeat="argument in inputrequest.request_arguments">
-                            <td>{{ argument.key }}</td>
-                            <td>{{ argument.value }}</td>
-                        </tr>
-                    </table>
-                </div>
             </div>
         </div>
+
     </div>
 </div>
+
