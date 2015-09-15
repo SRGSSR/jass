@@ -16,5 +16,5 @@ MIDDLEWARE_CLASSES += ('lockdown.middleware.LockdownMiddleware',)
 
 LOCKDOWN_FORM = 'lockdown.forms.LockdownForm'
 LOCKDOWN_PASSWORDS = ('PlayMobileCodeShines',)
-LOCKDOWN_URL_EXCEPTIONS = (r'^admin/?$', r'^static/?$',)
+LOCKDOWN_URL_EXCEPTIONS = (r'^admin/?$', r'^static/[\S]*',)
 
