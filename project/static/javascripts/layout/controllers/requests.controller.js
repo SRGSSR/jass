@@ -9,14 +9,29 @@
 
     function RequestsController($scope, InputRequests, Snackbar) {
         var vm = this;
+
         vm.inputrequests = [];
+        vm.is_paginated = false;
+        vm.number_of_pages = 0;
+        vm.range = new Array(100);
+
         activate();
 
         function activate() {
             InputRequests.all().then(inputrequestsSuccessFn, inputrequestsErrorFn);
 
             function inputrequestsSuccessFn(data, status, headers, config) {
-                vm.inputrequests = data.data;
+                var json_data = data.data;
+                if (json_data.results !== undefined && json_data.count !== undefined) { // paginated data
+                    vm.is_paginated = true;
+                    vm.number_of_pages = json_data.count / json_data.results.length;
+                    vm.inputrequests = json_data.results;
+                }
+                else {
+                    vm.is_paginated = false;
+                    vm.number_of_pages = 0;
+                    vm.inputrequests = json_data;
+                }
 
                 for (var i = 0; i < vm.inputrequests.length; i++) {
                     var inputrequest = vm.inputrequests[i];

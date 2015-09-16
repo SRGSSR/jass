@@ -1,1 +1,25 @@
-<inputrequests inputrequests="vm.inputrequests" ng-show="vm.inputrequests && vm.inputrequests.length"></inputrequests>
+<div class="container">
+    <div class="row">
+        <div ng-hide="!vm.is_paginated">
+            <ul class="pagination pagination-sm">
+                <li ng-class="{active:0}">
+                    <a href="#" ng-click="firstPage()">First</a>
+                </li>
+
+                <li data-ng-repeat="i in vm.range.slice(0,vm.number_of_pages) track by $index">
+                    <a href="#" ng-click="setPage()" ng-bind="index+1">{{ i }}</a>
+                </li>
+
+                <li>
+                    <a href="#" ng-click="lastPage()">Last</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <inputrequests inputrequests="vm.inputrequests" ng-show="vm.inputrequests && vm.inputrequests.length"></inputrequests>
+    </div>
+</div>
