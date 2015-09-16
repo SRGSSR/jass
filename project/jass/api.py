@@ -14,18 +14,24 @@ class InputRequestsPagination(pagination.PageNumberPagination):
 
 class InputRequestListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = serializers.InputRequestSerializer
-    pagination_class = InputRequestsPagination
+    # pagination_class = InputRequestsPagination
 
     def get_queryset(self):
         queryset = models.InputRequest.objects.all().order_by('-date')
 
-        method = self.request.query_params.get('method', None)
-        if method is not None:
-            queryset = queryset.filter(method=method)
-
-        hostname = self.request.query_params.get('hostname', None)
-        if hostname is not None:
-            queryset = queryset.filter(url__contains=hostname)
+        for k,v in self.request.query_params.items():
+            if k == 'origin':
+                queryset = queryset.filter(method=v)
+            elif k == 'url':
+                queryset = queryset.filter(url=v)
+            elif k == 'sessionid':
+                queryset = queryset.filter(sessionid=v)
+            elif k == 'user_agent':
+                queryset = queryset.filter(user_agent=v)
+            elif k == 'method':
+                queryset = queryset.filter(method=v)
+            else:
+                queryset = queryset.filter(url__contains=k+'='+v)
 
         return queryset
 
