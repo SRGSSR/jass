@@ -17,6 +17,10 @@
                 controller: 'IndexController',
                 controllerAs: 'vm',
                 templateUrl: '/static/templates/layout/index.html'})
+            .when('/requests', {
+                controller: 'RequestsController',
+                controllerAs: 'vm',
+                templateUrl: '/static/templates/layout/requests.html'})
             .otherwise('/');
     }
 })();
