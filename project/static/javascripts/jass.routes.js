@@ -17,14 +17,14 @@
                 controller: 'IndexController',
                 controllerAs: 'vm',
                 templateUrl: '/static/templates/layout/index.html'})
-            .when('/comparisons/:media_id', {
-                controller: 'ComparisonsController',
-                controllerAs: 'vm',
-                templateUrl: '/static/templates/layout/comparisons.html'})
             .when('/requests', {
                 controller: 'RequestsController',
                 controllerAs: 'vm',
                 templateUrl: '/static/templates/layout/latestrequests.html'})
+            .when('/comparisons/:media_id', {
+                controller: 'ComparisonsController',
+                controllerAs: 'vm',
+                templateUrl: '/static/templates/layout/comparisons.html'})
             .otherwise('/');
     }
 })();

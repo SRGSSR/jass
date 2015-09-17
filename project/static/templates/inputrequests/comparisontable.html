@@ -1,0 +1,26 @@
+<div class="row" ng-cloak>
+    <div class="col-sm-12">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>Media ID: {{ vm.table.media_id }}</strong>
+            </div>
+
+            <div class="panel-body">
+                <table border="0">
+                    <tr>
+                        <th>Keys</th>
+                        <th ng-repeat="request in vm.table.requests">
+                            #{{ request.id }}
+                        </th>
+                    </tr>
+                    <tr ng-repeat="row in vm.table.table_rows">
+                        <td ng-repeat="cell in row track by $index">{{ cell }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
