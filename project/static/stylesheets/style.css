@@ -56,13 +56,18 @@ th, td {
 table, th, td {
     border-collapse: collapse;
     padding: 5px;
+    color: black;
 }
 
-table tr td, .ok {
+.td-ok {
     background-color: #e3f9eb;
 }
 
-table tr td, .different {
+.td-missing {
+    color: red;
+}
+
+.td-different {
     background-color: rgba(249, 164, 10, 0.21);
 }
 

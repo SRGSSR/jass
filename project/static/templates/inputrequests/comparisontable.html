@@ -11,7 +11,7 @@
                 </th>
             </tr>
             <tr ng-repeat="row in vm.table.rows">
-                <td ng-repeat="cell in row track by $index" class="{{ row[0].validation }} ">{{ cell.content }}</td>
+                <td ng-repeat="cell in row track by $index" class="td-{{ cell.content == 'missing' && 'missing' || '' }} td-{{ row[0].validation }}">{{ cell.content }}</td>
             </tr>
         </table>
 

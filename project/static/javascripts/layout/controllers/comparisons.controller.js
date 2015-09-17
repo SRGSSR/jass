@@ -77,7 +77,7 @@
                     var filtered_row_items = row_items.filter(function(elem, index, self) {
                         return index == self.indexOf(elem);
                     });
-                    
+
                     if (filtered_row_items.length == 1) {
                         key_cell['validation'] = "ok";
                     }
