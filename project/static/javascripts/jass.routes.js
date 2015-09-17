@@ -24,7 +24,7 @@
             .when('/requests', {
                 controller: 'RequestsController',
                 controllerAs: 'vm',
-                templateUrl: '/static/templates/layout/requests.html'})
+                templateUrl: '/static/templates/layout/latestrequests.html'})
             .otherwise('/');
     }
 })();
