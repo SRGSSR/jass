@@ -65,6 +65,7 @@ table, th, td {
 
 .td-missing {
     color: red;
+    font-style: italic;
 }
 
 .td-different {
