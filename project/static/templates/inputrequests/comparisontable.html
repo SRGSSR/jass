@@ -1,25 +1,19 @@
-<div class="row" ng-cloak>
+<div class="row-fluid" ng-cloak>
     <div class="col-sm-12">
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <strong>Media ID: {{ vm.table.media_id }}</strong>
-            </div>
+        <h2>Comparison for Media ID: {{ vm.table.media_id }}</h2>
 
-            <div class="panel-body">
-                <table border="0">
-                    <tr>
-                        <th>Keys</th>
-                        <th ng-repeat="request in vm.table.requests">
-                            #{{ request.id }}
-                        </th>
-                    </tr>
-                    <tr ng-repeat="row in vm.table.table_rows">
-                        <td ng-repeat="cell in row track by $index">{{ cell }}</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+        <table border="0">
+            <tr>
+                <th>Keys</th>
+                <th ng-repeat="request in vm.table.requests">
+                    Req. #{{ request.id }}
+                </th>
+            </tr>
+            <tr ng-repeat="row in vm.table.rows">
+                <td ng-repeat="cell in row track by $index" class="{{ row[0].validation }} ">{{ cell.content }}</td>
+            </tr>
+        </table>
 
     </div>
 </div>

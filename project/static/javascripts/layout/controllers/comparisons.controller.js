@@ -26,7 +26,7 @@
                 $scope.viewLoading = false;
 
                 vm.comparisontable.requests = data.data;
-                vm.comparisontable.table_rows = [];
+                vm.comparisontable.rows = [];
 
                 // First decompose all url arguments and fill a set of keys...
                 // URL arguments are put into a request_arguments object.
@@ -57,18 +57,35 @@
                 for (var j = 0; j < filtered_keys.length; j++) {
                     var key = filtered_keys[j];
                     var row = [];
-                    row.push(key);
+                    var key_cell = {'content': key, 'validation': 'unknown'};
+                    row.push(key_cell);
+
+                    var row_items = [];
                     for (var k = 0; k < vm.comparisontable.requests.length; k++) {
+                        var cell = {};
                         var req = vm.comparisontable.requests[k];
                         if (req.request_arguments[key] != undefined) {
-                            row.push(req.request_arguments[key]);
+                            cell['content'] = req.request_arguments[key];
                         }
                         else {
-                            row.push('missing');
+                            cell['content'] = 'missing';
                         }
+                        row_items.push(cell['content']);
+                        row.push(cell);
                     }
 
-                    vm.comparisontable.table_rows.push(row);
+                    var filtered_row_items = row_items.filter(function(elem, index, self) {
+                        return index == self.indexOf(elem);
+                    });
+                    
+                    if (filtered_row_items.length == 1) {
+                        key_cell['validation'] = "ok";
+                    }
+                    else {
+                        key_cell['validation'] = "different";
+                    }
+
+                    vm.comparisontable.rows.push(row);
                 }
             }
 

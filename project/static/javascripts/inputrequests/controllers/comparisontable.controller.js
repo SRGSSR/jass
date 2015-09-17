@@ -14,7 +14,6 @@
 
         function activate() {
             $scope.$watchCollection(function () { return $scope.comparisontable; }, render);
-            //$scope.$watchCollection(function () { return $scope.table_rows; }, render);
         }
 
         function render(current, original) {
