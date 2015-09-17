@@ -20,7 +20,7 @@
             .when('/comparisons/:media_id', {
                 controller: 'ComparisonsController',
                 controllerAs: 'vm',
-                templateUrl: '/static/templates/layout/requests.html'})
+                templateUrl: '/static/templates/layout/comparisons.html'})
             .when('/requests', {
                 controller: 'RequestsController',
                 controllerAs: 'vm',

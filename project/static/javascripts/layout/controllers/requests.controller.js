@@ -18,9 +18,12 @@
         activate();
 
         function activate() {
+            $scope.viewLoading = true;
             InputRequests.all().then(inputrequestsSuccessFn, inputrequestsErrorFn);
 
             function inputrequestsSuccessFn(data, status, headers, config) {
+                $scope.viewLoading = false;
+
                 var json_data = data.data;
                 if (json_data.results !== undefined && json_data.count !== undefined) { // paginated data
                     vm.is_paginated = true;
@@ -52,6 +55,7 @@
             }
 
             function inputrequestsErrorFn(data, status, headers, config) {
+                $scope.viewLoading = false;
                 Snackbar.error(data.error);
                 console.log(data.error);
             }
