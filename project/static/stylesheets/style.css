@@ -19,6 +19,10 @@ body {
     text-align: center;
 }
 
+.input-group {
+    padding-bottom: 20px;
+}
+
 .inputrequest {}
 
 .inputrequest .inputrequest__meta {
@@ -49,8 +53,13 @@ th {
 
 th, td {
     border: 1px solid #c5c5c5;
-    max-width: 200px;
+    min-width: 50px;
+    max-width: 100px;
     overflow: hidden;
+}
+
+.video-cell {
+    width: 400px;
 }
 
 table, th, td {

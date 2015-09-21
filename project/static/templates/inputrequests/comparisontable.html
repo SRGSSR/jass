@@ -1,20 +1,28 @@
 <div class="row-fluid" ng-cloak>
-    <div class="col-sm-12">
+    <div class="container">
+        <div class="col-sm-12">
+            <div ng-show="vm.table.requests && vm.table.requests.length">
+                <h2>Comparison for Media ID: {{ vm.table.media_id }}</h2>
+                <table border="0">
+                    <tr>
+                        <th>Keys</th>
+                        <th ng-repeat="request in vm.table.requests">
+                            Req. #{{ request.id }}
+                        </th>
+                    </tr>
+                    <tr ng-repeat="row in vm.table.rows">
+                        <td ng-repeat="cell in row track by $index" class="td-{{ cell.content == 'missing' && 'missing' || '' }} td-{{ row[0].validation }}">{{ cell.content }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
 
-        <h2>Comparison for Media ID: {{ vm.table.media_id }}</h2>
-
-        <table border="0">
-            <tr>
-                <th>Keys</th>
-                <th ng-repeat="request in vm.table.requests">
-                    Req. #{{ request.id }}
-                </th>
-            </tr>
-            <tr ng-repeat="row in vm.table.rows">
-                <td ng-repeat="cell in row track by $index" class="td-{{ cell.content == 'missing' && 'missing' || '' }} td-{{ row[0].validation }}">{{ cell.content }}</td>
-            </tr>
-        </table>
-
+        <div class="col-sm-12">
+            <div ng-hide="vm.table.requests && vm.table.requests.length">
+                <div class="col-md-12 no-inputrequest-here">
+                    <h3>No requests found for Media ID: {{ vm.table.media_id }}</h3>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-

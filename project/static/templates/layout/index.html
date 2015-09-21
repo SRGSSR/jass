@@ -1,6 +1,74 @@
 <div class="container">
     <div class="row">
-        <a type="button" class="btn btn-default btn-lg" href="/requests">See Latest Requests</a>
-        <a type="button" class="btn btn-default btn-lg" href="/comparisons/6981824">Compare requests (SRF video id : 6981824)</a>
+        <div class="col-md-5">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Media ID" id="mediaid-input">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" onclick="compareRequests();">Compare Requests</button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                Examples:
+                <table class="table">
+                    <tr>
+                        <th>BU</th>
+                        <th>Media ID</th>
+                        <th>Title</th>
+                        <th>Video</th>
+                    </tr>
+                    <tr>
+                        <td>RTS</td>
+                        <td>
+                            <a href="javascript:selectMedia('7068593');" title="Select ID!">7068593</a>
+                        <td>
+                            La stévia: le bon sucre vert?
+                            <a target="_self" href="http://www.rts.ch/play/tv/a-bon-entendeur/video/la-stevia-le-bon-sucre-vert?id=7068593">
+                                <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+                            </a>
+                        </td>
+                        <td class="video-cell">
+                            <iframe src="http://tp.srgssr.ch/p/rts/embed?urn=urn:rts:video:7068593" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>RTS</td>
+                        <td>
+                            <a href="javascript:selectMedia('6981824');" title="Select ID!">6981824</a>
+                        <td>
+                            ?
+                            <a target="_self" href="http://www.rts.ch/play/tv/a-bon-entendeur/video/la-stevia-le-bon-sucre-vert?id=6981824">
+                                <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+                            </a>
+                        </td>
+                        <td class="video-cell">
+                            <iframe src="http://tp.srgssr.ch/p/rts/embed?urn=urn:rts:video:6981824" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <a type="button" class="btn btn-default btn-lg" href="/requests">See Latest Requests</a>
+            </div>
+        </div>
     </div>
 </div>
+
+<script>
+    function selectMedia(media_id) {
+        $("#mediaid-input").val(media_id);
+    }
+
+    function compareRequests() {
+        var val = $("#mediaid-input").val();
+        if (val === undefined || val.length == 0) {
+            alert("A media ID is required to proceeed.");
+        }
+        else {
+            window.location = "/comparisons/"+val;
+        }
+    }
+</script>
