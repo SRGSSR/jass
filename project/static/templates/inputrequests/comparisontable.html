@@ -3,11 +3,21 @@
         <div class="col-sm-12">
             <div ng-show="vm.table.requests && vm.table.requests.length">
                 <h2>Comparison for Media ID: {{ vm.table.media_id }}</h2>
+
                 <table border="0">
                     <tr>
                         <th>Keys</th>
                         <th ng-repeat="request in vm.table.requests">
                             Req. #{{ request.id }}
+                            <div ng-if="request.icons.os" class="pull-right">
+                                <img src="{{ request.icons.os }}" width="50" class="img-thumbnail">
+                            </div>
+                            <div ng-if="request.icons.app" class="pull-right">
+                                <img src="{{ request.icons.app }}" width="50" class="img-thumbnail">
+                            </div>
+                            <div ng-if="request.icons.browser" class="pull-right">
+                                <img src="{{ request.icons.browser }}" width="50" class="img-thumbnail">
+                            </div>
                         </th>
                     </tr>
                     <tr ng-repeat="row in vm.table.rows">

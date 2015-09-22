@@ -8,8 +8,19 @@
             </div>
 
             <div class="panel-body">
+                <div ng-if="inputrequest.icons.os" class="pull-right">
+                    <img src="{{ inputrequest.icons.os }}" width="50" class="img-thumbnail">
+                </div>
+                <div ng-if="inputrequest.icons.app" class="pull-right">
+                    <img src="{{ inputrequest.icons.app }}" width="50" class="img-thumbnail">
+                </div>
+                <div ng-if="inputrequest.icons.browser" class="pull-right">
+                    <img src="{{ inputrequest.icons.browser }}" width="50" class="img-thumbnail">
+                </div>
+
                 <strong>User-agent:</strong> {{ inputrequest.user_agent }}<br/>
                 <strong>Session ID:</strong> {{ inputrequest.sessionid }}<br/>
+                <strong>URL:</strong> {{ inputrequest.url }}<br/>
 
                 <div class="collapse-group">
                     <strong>Headers <a class="btn btn-xs btn-default btn-details" href="#">details &raquo;</a></strong>

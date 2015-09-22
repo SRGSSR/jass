@@ -5,9 +5,9 @@
         .module('jass.layout.controllers')
         .controller('ComparisonsController', ComparisonsController);
 
-    ComparisonsController.$inject = ['$scope', '$routeParams', 'InputRequests', 'Snackbar'];
+    ComparisonsController.$inject = ['$scope', '$routeParams', 'InputRequests', 'RequestIcons', 'Snackbar'];
 
-    function ComparisonsController($scope, $routeParams, InputRequests, Snackbar) {
+    function ComparisonsController($scope, $routeParams, InputRequests, RequestIcons, Snackbar) {
         var vm = this;
 
         vm.comparisontable = undefined;
@@ -32,7 +32,7 @@
                 // URL arguments are put into a request_arguments object.
                 var keys = [];
                 for (var i = 0; i < vm.comparisontable.requests.length; i++) {
-                    var request = vm.comparisontable.requests[i];
+                    var inputrequest = vm.comparisontable.requests[i];
 
                     (function(req, ks) {
                         var parser = document.createElement('a');
@@ -47,7 +47,8 @@
                             req.request_arguments[arg[0]] = arg[1];
                             ks.push(arg[0]);
                         }
-                    })(request, keys);
+                        RequestIcons.findAll(req);
+                    })(inputrequest, keys);
                 }
 
                 var filtered_keys = keys.filter(function(elem, index, self) {

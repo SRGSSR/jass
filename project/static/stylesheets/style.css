@@ -54,7 +54,7 @@ th {
 th, td {
     border: 1px solid #c5c5c5;
     min-width: 50px;
-    max-width: 100px;
+    max-width: 200px;
     overflow: hidden;
 }
 
