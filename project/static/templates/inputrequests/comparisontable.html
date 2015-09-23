@@ -6,17 +6,17 @@
                 <p>The current rule is: 1st request serves as reference. Comparison is made with the 10 latest requests, for that ID.</p>
                 <table border="0">
                     <tr>
-                        <th>Keys</th>
+                        <th style="background-color: lightgray;">Keys</th>
                         <th ng-repeat="request in vm.table.requests" class="{{ $index == '0' && 'first-request' || 'compared-request' }}">
                             Req. #{{ request.id }} {{ $index == '0' && 'Reference' || '' }} <br/>
-                            {{ request.date | date:"d MMM yyyy 'at' H:mm"  }}
-                            <div ng-if="request.icons.os" class="pull-right">
+                            {{ request.date | date:"d MMM yyyy 'at' H:mm"  }}<br/>
+                            <div ng-if="request.icons.os" class="pull-left">
                                 <img src="{{ request.icons.os }}" width="50" class="img-thumbnail">
                             </div>
-                            <div ng-if="request.icons.app" class="pull-right">
+                            <div ng-if="request.icons.app" class="pull-left">
                                 <img src="{{ request.icons.app }}" width="50" class="img-thumbnail">
                             </div>
-                            <div ng-if="request.icons.browser" class="pull-right">
+                            <div ng-if="request.icons.browser" class="pull-left">
                                 <img src="{{ request.icons.browser }}" width="50" class="img-thumbnail">
                             </div>
                         </th>
