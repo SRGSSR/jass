@@ -29,7 +29,7 @@
             vm.comparisontable.event = $routeParams.event;
             vm.comparisontable.event_type = $routeParams.event_type;
 
-            var url = 'srg_pr_id='+vm.comparisontable.media_id;
+            var url = 'ns_st_ci='+vm.comparisontable.media_id;
             if (vm.comparisontable.event !== undefined) {
                 url += '&ns_st_ev='+vm.comparisontable.event;
             }
