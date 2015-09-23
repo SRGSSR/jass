@@ -30,8 +30,8 @@
             vm.comparisontable.event_type = $routeParams.event_type;
 
             var url = 'srg_pr_id='+vm.comparisontable.media_id;
-            if (vm.comparisontable.event !== undefined && vm.comparisontable.event_type !== undefined) {
-                url += '&ns_st_ev='+vm.comparisontable.event+'&ns_ap_ev='+vm.comparisontable.event_type;
+            if (vm.comparisontable.event !== undefined) {
+                url += '&ns_st_ev='+vm.comparisontable.event;
             }
 
             InputRequests.all(url).then(successFn, errorFn);
