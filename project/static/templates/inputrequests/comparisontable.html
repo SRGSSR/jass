@@ -2,7 +2,7 @@
     <div class="container">
         <div class="col-sm-12">
             <div ng-show="vm.table.requests && vm.table.requests.length">
-                <h3>Comparison for Media ID {{ vm.table.media_id }} for event {{ vm.comparisontable.event }}</h3>
+                <h3>Comparison for media with <em>ns_st_ci</em> = {{ vm.table.media_id }} for <em>ns_st_ev</em> = {{ vm.table.event }}</h3>
                 <p>The current rule is: 1st request serves as reference. Comparison is made with the 10 latest requests, for that ID.</p>
                 <table border="0">
                     <tr>
