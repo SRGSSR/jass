@@ -5,6 +5,16 @@ import requests
 
 from libmproxy.script import concurrent
 
+# Arguments:
+# 1) webservice receiving all requests
+
+def start(context, argv):
+    if len(argv) != 2:
+        raise ValueError('Usage: -s "sendToServer.py webservice_api"')
+    # You may want to use Python's argparse for more sophisticated argument
+    # parsing.
+    context.api = argv[1]
+
 #For more info on requests: https://mitmproxy.org/doc/scripting/inlinescripts.html
 # method must be inside ['GET', 'POST']
 
@@ -37,5 +47,5 @@ def request(context, flow):
         if cookies is not None and len(cookies.get("UID")) > 0:
             payload['sessionid'] = cookies.get("UID")[0]
 
-        r = requests.post("http://jass-prod.herokuapp.com/api/inputrequests/", json=payload)
+        r = requests.post(context.api, json=payload)
         print 10*'-', r.status_code, 80*"-"
