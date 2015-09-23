@@ -41,7 +41,14 @@
                 vm.comparisontable.requests = [];
                 vm.comparisontable.rows = [];
 
-                var all_requests = data.data;
+                // Handling pagination of the data.
+                var all_requests = undefined;
+                if (data.data.results !== undefined && data.data.count !== undefined) {
+                    all_requests = data.data.results;
+                }
+                else {
+                    all_requests = data.data;
+                }
 
                 // Taking oldest request as reference
                 vm.comparisontable.requests.push(all_requests[all_requests.length-1]);
