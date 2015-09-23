@@ -4,7 +4,7 @@
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Media ID" id="mediaid-input">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" onclick="compareRequests();">Compare Requests</button>
+                    <button class="btn btn-default" type="button" onclick="compareRequests();">Compare Play|Start Requests</button>
                 </span>
             </div>
         </div>
@@ -68,7 +68,7 @@
             alert("A media ID is required to proceeed.");
         }
         else {
-            window.location = "/comparisons/"+val;
+            window.location = "/comparisons/"+val+"/play/start";
         }
     }
 </script>

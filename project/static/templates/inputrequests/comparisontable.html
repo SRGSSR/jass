@@ -8,7 +8,7 @@
                     <tr>
                         <th>Keys</th>
                         <th ng-repeat="request in vm.table.requests">
-                            Req. #{{ request.id }}
+                            <span class="{{ $index == '0' && 'first-request' || 'compared-request' }}">Req. #{{ request.id }}</span>
                             <div ng-if="request.icons.os" class="pull-right">
                                 <img src="{{ request.icons.os }}" width="50" class="img-thumbnail">
                             </div>

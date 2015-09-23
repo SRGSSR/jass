@@ -21,7 +21,7 @@
                 controller: 'RequestsController',
                 controllerAs: 'vm',
                 templateUrl: '/static/templates/layout/latestrequests.html'})
-            .when('/comparisons/:media_id', {
+            .when('/comparisons/:media_id/:event/:event_type', {
                 controller: 'ComparisonsController',
                 controllerAs: 'vm',
                 templateUrl: '/static/templates/layout/comparisons.html'})

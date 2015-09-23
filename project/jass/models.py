@@ -6,7 +6,7 @@ class InputRequestManger(models.Manager):
     def get_queryset(self):
         return super(InputRequestManger, self).get_queryset().order_by('-date')
 
-    def get_comScore_queryset(self):
+    def all_comScore(self):
         return self.get_queryset().filter(url__contains='b.scorecardresearch.com')
 
 
@@ -33,7 +33,12 @@ class InputRequest(models.Model):
         METHOD_POST,
     )
 
-    METHOD_VALUES = METHOD_KEYS
+    METHOD_VALUES = (
+        "Unknown Method",
+        METHOD_GET,
+        METHOD_POST
+    )
+
     METHOD_CHOICES = tuple(zip(METHOD_KEYS, METHOD_VALUES))
     method = models.CharField(max_length=10, blank=True, choices=METHOD_CHOICES, default=METHOD_UNKNOWN)
 

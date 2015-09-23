@@ -62,6 +62,10 @@ th, td {
     width: 400px;
 }
 
+.first-request {
+    background-color: lightblue;
+}
+
 table, th, td {
     border-collapse: collapse;
     padding: 5px;

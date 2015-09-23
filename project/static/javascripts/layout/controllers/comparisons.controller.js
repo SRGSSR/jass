@@ -15,18 +15,42 @@
         activate();
 
         function activate() {
+            if ($routeParams.media_id === undefined) {
+                $scope.viewLoading = false;
+                Snackbar.error("Missing media ID");
+                console.log("Missing media ID");
+                return;
+            }
+
             $scope.viewLoading = true;
 
             vm.comparisontable = {};
             vm.comparisontable.media_id = $routeParams.media_id;
+            vm.comparisontable.event = $routeParams.event;
+            vm.comparisontable.event_type = $routeParams.event_type;
 
-            InputRequests.all('srg_pr_id='+vm.comparisontable.media_id).then(successFn, errorFn);
+            var url = 'srg_pr_id='+vm.comparisontable.media_id;
+            if (vm.comparisontable.event !== undefined && vm.comparisontable.event_type !== undefined) {
+                url += '&ns_st_ev='+vm.comparisontable.event+'&ns_ap_ev='+vm.comparisontable.event_type;
+            }
+
+            InputRequests.all(url).then(successFn, errorFn);
 
             function successFn(data, status, headers, config) {
                 $scope.viewLoading = false;
-
-                vm.comparisontable.requests = data.data;
+                vm.comparisontable.requests = [];
                 vm.comparisontable.rows = [];
+
+                var all_requests = data.data;
+
+                // Taking oldest request as reference
+                vm.comparisontable.requests.push(all_requests[all_requests.length-1]);
+
+                // Making comparison of last 10 requests.
+                var limit = Math.min(10, all_requests.length-2);
+                for (var l = 0; l < limit; l++) {
+                    vm.comparisontable.requests.push(all_requests[l]);
+                }
 
                 // First decompose all url arguments and fill a set of keys...
                 // URL arguments are put into a request_arguments object.
