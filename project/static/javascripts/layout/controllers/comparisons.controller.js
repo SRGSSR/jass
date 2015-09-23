@@ -27,7 +27,6 @@
             vm.comparisontable = {};
             vm.comparisontable.media_id = $routeParams.media_id;
             vm.comparisontable.event = $routeParams.event;
-            vm.comparisontable.event_type = $routeParams.event_type;
 
             var url = 'ns_st_ci='+vm.comparisontable.media_id;
             if (vm.comparisontable.event !== undefined) {

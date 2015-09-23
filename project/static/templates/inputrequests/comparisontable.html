@@ -2,13 +2,14 @@
     <div class="container">
         <div class="col-sm-12">
             <div ng-show="vm.table.requests && vm.table.requests.length">
-                <h2>Comparison for Media ID: {{ vm.table.media_id }}</h2>
-
+                <h3>Comparison for Media ID {{ vm.table.media_id }} for event {{ vm.comparisontable.event }}</h3>
+                <p>The current rule is: 1st request serves as reference. Comparison is made with the 10 latest requests, for that ID.</p>
                 <table border="0">
                     <tr>
                         <th>Keys</th>
-                        <th ng-repeat="request in vm.table.requests">
-                            <span class="{{ $index == '0' && 'first-request' || 'compared-request' }}">Req. #{{ request.id }}</span>
+                        <th ng-repeat="request in vm.table.requests" class="{{ $index == '0' && 'first-request' || 'compared-request' }}">
+                            Req. #{{ request.id }} {{ $index == '0' && 'Reference' || '' }} <br/>
+                            {{ request.date | date:"d MMM yyyy 'at' H:mm"  }}
                             <div ng-if="request.icons.os" class="pull-right">
                                 <img src="{{ request.icons.os }}" width="50" class="img-thumbnail">
                             </div>

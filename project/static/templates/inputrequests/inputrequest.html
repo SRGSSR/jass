@@ -4,7 +4,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <strong>request <a href="/{{ inputrequest.id }}">#{{ inputrequest.id }}</a></strong>
-                <span class="inputrequest__submeta">at {{ inputrequest.date }}</span> from (IP) {{ inputrequest.origin }}<br/>
+                <span class="inputrequest__submeta">at {{ inputrequest.date | date:"d MMM yyyy 'at' H:mm"  }}</span> from (IP) {{ inputrequest.origin }}<br/>
             </div>
 
             <div class="panel-body">
