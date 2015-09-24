@@ -9,12 +9,6 @@
 
     function IndexController($scope, InputRequests, Snackbar) {
         var vm = this;
-        vm.inputrequests = [];
-        activate();
-
-        function activate() {
-            // do something on controller instanciation
-        }
     }
 })();
 
