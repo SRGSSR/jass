@@ -1,16 +1,23 @@
 Introduction
 ---------
-This small tool catches all statistics requests going through an HTTP Proxy and sends them to a JASS instance.
+JASS is an online- tool that catches up requests made to comScore, and allow to display, filter, and compare statistics
+labels. It works with a small HTTP Proxy through which requests flow, and are sent to the JASS.
 
-Installation
+To make it work, one must install a small utility (mitmproxy) on any 'proxy computer'. Assuming they are on the
+same WIFI, test mobile devices (phones, tablets) as well as any other computers must choose the same wifi of the proxy, 
+and enter its IP address and port in the network "Proxy" configuration.
+
+
+Requirements
 ------------
 * mitmproxy: `brew install mitmproxy`
-* requests python library: `sudo easy_install requests`
-
-Launch
-------
-`./start.sh` in the terminal
+* requests python library: `sudo easy_install requests`, or `sudo pip install requests`
 
 Usage
 -----
-Make sure your target device is on the same network as the proxy. Configure all test devices to use the proxy (the proxy server IP addresses are listed when starting start.sh)
+• Open a terminal
+• Move to the directory of this documentation
+• Enter the following command: `./start.sh`
+• The proxy is started, and the IP address with its port to use in the network configuration of test devices is printed.
+
+
