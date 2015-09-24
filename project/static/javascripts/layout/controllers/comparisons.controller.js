@@ -53,7 +53,7 @@
                 vm.comparisontable.requests.push(all_requests[all_requests.length-1]);
 
                 // Making comparison of last 10 requests.
-                var limit = Math.min(10, all_requests.length-2);
+                var limit = Math.min(10, all_requests.length-1);
                 for (var l = 0; l < limit; l++) {
                     vm.comparisontable.requests.push(all_requests[l]);
                 }
