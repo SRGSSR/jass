@@ -10,7 +10,7 @@ and enter its IP address and port in the network "Proxy" configuration.
 
 Requirements
 ------------
-* mitmproxy: `brew install mitmproxy`
+* mitmproxy: `brew install mitmproxy`, or `pip install mitmproxy`
 * requests python library: `sudo easy_install requests`, or `sudo pip install requests`
 
 Usage
