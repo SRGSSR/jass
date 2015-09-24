@@ -22,7 +22,7 @@
                 <strong>Session ID:</strong> {{ inputrequest.sessionid }}<br/>
 
                 <div class="collapse-group">
-                    <strong>Headers <a class="btn btn-xs btn-default btn-details" href="#">details &raquo;</a></strong>
+                    <strong>Headers: <a class="btn btn-xs btn-default btn-details" href="#">show &raquo;</a></strong>
                     <div class="collapse">
                         <table class="collapse" border="0">
                             <tr ng-repeat="header in inputrequest.headers">
@@ -34,7 +34,14 @@
                 </div>
 
                 <div class="collapse-group">
-                    <strong>Request Arguments: <a class="btn btn-xs btn-default btn-details" href="#">details &raquo;</a></strong>
+                    <strong>Full URL: <a class="btn btn-xs btn-default btn-details" href="#">show &raquo;</a></strong>
+                    <div class="collapse">
+                        {{ inputrequest.url }}
+                    </div>
+                </div>
+
+                <div class="collapse-group">
+                    <strong>Request Arguments: <a class="btn btn-xs btn-default btn-details" href="#">show &raquo;</a></strong>
                     <div class="collapse">
                         <table class="collapse" border="0">
                             <tr ng-repeat="argument in inputrequest.request_arguments">
