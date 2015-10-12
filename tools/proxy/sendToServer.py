@@ -44,7 +44,7 @@ def request(context, flow):
             payload['user_agent'] = user_agent
 
         cookies = flow.request.get_cookies()
-        if cookies is not None and len(cookies.get("UID")) > 0:
+        if cookies.get("UID", None) is not None and len(cookies.get("UID")) > 0:
             payload['sessionid'] = cookies.get("UID")[0]
 
         r = requests.post(context.api, json=payload)

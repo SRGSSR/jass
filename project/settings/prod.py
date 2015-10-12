@@ -3,7 +3,6 @@
 from defaults import *
 
 DEBUG = False
-TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [
     'jass-prod.herokuapp.com',
