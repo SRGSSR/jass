@@ -101,12 +101,12 @@ USE_TZ = True
 
 ALLOWED_HOSTS = ['*']
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
-STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
 STATICFILES_DIRS = (
-    STATIC_PATH,
+    os.path.join(BASE_DIR, 'static'),
 )
 
 # List of finder classes that know how to find static files in various locations.
