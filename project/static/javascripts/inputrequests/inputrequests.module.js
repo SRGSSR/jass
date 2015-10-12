@@ -12,7 +12,7 @@
         .module('jass.inputrequests.controllers', []);
 
     angular
-        .module('jass.inputrequests.directives', ['ngDialog']);
+        .module('jass.inputrequests.directives', []);
 
     angular
         .module('jass.inputrequests.services', []);

@@ -121,6 +121,5 @@ BOWER_INSTALLED_APPS = (
     'angular-route',
     'angular-resource',
     'angular-cookies',
-    'ngDialog',
     'snackbarjs'
 )
