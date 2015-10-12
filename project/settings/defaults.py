@@ -10,12 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
 PROJECT_PATH = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-
-# Absolute path of the whole project "PicoLegends-Django" root directory.
 ROOT_PATH = os.path.dirname(PROJECT_PATH)
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -104,7 +101,7 @@ ALLOWED_HOSTS = ['*']
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    '/app/static',
+    os.path.join(PROJECT_PATH, 'static'),
 )
 
 # List of finder classes that know how to find static files in various locations.
