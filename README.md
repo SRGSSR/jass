@@ -27,3 +27,6 @@ Tools
  - ```sudo npm install -g bower```
  -  ~/.virtualenvs/jass_debug/bin/python manage.py bower install
 - ```~/.virtualenvs/jass_debug/bin/python manage.py collectstatic --noinput```
+
+- Install fixtures to test:
+``` ~/.virtualenvs/jass_debug/bin/python manage.py loadata project/fixtures/dump_heroku_prod_830objects_03_11_2015.json```
