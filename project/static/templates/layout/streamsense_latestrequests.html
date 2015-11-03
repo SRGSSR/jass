@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+        <div ng-hide="!vm.is_paginated">
+            <ul class="pagination pagination-sm">
+                <li ng-class="{active:0}">
+                    <a href="#" ng-click="firstPage()">First</a>
+                </li>
+
+                <li data-ng-repeat="i in vm.range.slice(0,vm.number_of_pages) track by $index">
+                    <a href="#" ng-click="setPage()" ng-bind="index+1">{{ i }}</a>
+                </li>
+
+                <li>
+                    <a href="#" ng-click="lastPage()">Last</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ns_st_ev</th>
+            <th>ns_st_ep</th>
+            <th>ns_st_po</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="data_row in vm.inputrequests track by $index">
+        <tr class="{{ $index%2 == 0 && 'highlight' }}" ng-if="data_row.request_arguments.ns_st_ev">
+            <td>{{data_row.request_arguments.ns_st_ev}}</td>
+            <td>{{data_row.request_arguments.ns_st_ep}}</td>
+            <td>{{data_row.request_arguments.ns_st_po}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

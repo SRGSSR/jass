@@ -43,14 +43,14 @@
                         var parser = document.createElement('a');
                         parser.href = req.url;
                         var tmp_arguments = parser.search.split('&');
-                        req.request_arguments = [];
+                        req.request_arguments = {};
 
                         for (var j = 0; j < tmp_arguments.length; j++) {
                             var arg = tmp_arguments[j].split('=');
                             if (arg[0][0] === "?") {
                                 arg[0] = arg[0].substring(1);
                             }
-                            req.request_arguments.push({'key': arg[0], 'value': arg[1]});
+                            req.request_arguments[arg[0]] = arg[1];
                         }
                         RequestIcons.findAll(req);
                     })(inputrequest);
