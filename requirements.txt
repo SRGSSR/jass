@@ -12,3 +12,5 @@ gunicorn==19.3.0
 psycopg2==2.6.1
 django-websocket-redis==0.4.4
 uwsgi==2.0.11.2
+wsaccel==0.6.2
+django-redis-sessions==0.5.0
