@@ -44,9 +44,9 @@
                     <strong>Request Arguments: <a class="btn btn-xs btn-default btn-details" href="#">show &raquo;</a></strong>
                     <div class="collapse">
                         <table class="collapse" border="0">
-                            <tr ng-repeat="key in inputrequest.request_arguments">
+                            <tr ng-repeat="(key, value) in inputrequest.request_arguments">
                                 <td>{{ key }}</td>
-                                <td>{{ inputrequest.request_arguments[key] }}</td>
+                                <td>{{ value }}</td>
                             </tr>
                         </table>
                     </div>
