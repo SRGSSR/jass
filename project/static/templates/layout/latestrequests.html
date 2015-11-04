@@ -1,12 +1,12 @@
 <div class="container">
     <div class="row">
-        <div ng-hide="!vm.is_paginated">
+        <div ng-hide="!is_paginated">
             <ul class="pagination pagination-sm">
                 <li ng-class="{active:0}">
                     <a href="#" ng-click="firstPage()">First</a>
                 </li>
 
-                <li data-ng-repeat="i in vm.range.slice(0,vm.number_of_pages) track by $index">
+                <li data-ng-repeat="i in range.slice(0,number_of_pages) track by $index">
                     <a href="#" ng-click="setPage()" ng-bind="index+1">{{ i }}</a>
                 </li>
 
@@ -20,6 +20,18 @@
 
 <div class="container">
     <div class="row">
-        <inputrequests inputrequests="vm.inputrequests" ng-show="vm.inputrequests && vm.inputrequests.length"></inputrequests>
+
+        <div class="col-md-12">
+            <div ng-repeat="inputrequest in inputrequests track by $index">
+                <inputrequest inputrequest="inputrequest"></inputrequest>
+            </div>
+        </div>
+
+        <div ng-hide="inputrequests && inputrequests.length">
+            <div class="col-md-12 no-inputrequest-here">
+                No requests found.
+            </div>
+        </div>
     </div>
+
 </div>

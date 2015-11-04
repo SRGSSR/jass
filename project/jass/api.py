@@ -7,6 +7,7 @@ from ws4redis.redis_store import RedisMessage
 from project.jass import models
 from project.jass import serializers
 from rest_framework import pagination
+import json
 
 class InputRequestsPagination(pagination.PageNumberPagination):
     page_size = 100
@@ -20,10 +21,9 @@ class InputRequestListCreateAPIView(generics.ListCreateAPIView):
 
     def post(self, request, *args, **kwargs):
         result = super(InputRequestListCreateAPIView, self).post(request, args, kwargs)
-        method = request.data['fields']['method']
-        url = request.data['fields']['url']
-        message = RedisMessage(method+' '+url)
-        RedisPublisher(facility='ws1', broadcast=True).publish_message(message)
+        if result.status_code == 201:
+            message = RedisMessage(json.dumps(result.data))
+            RedisPublisher(facility='ws1', broadcast=True).publish_message(message)
         return result
 
     def get_queryset(self):
