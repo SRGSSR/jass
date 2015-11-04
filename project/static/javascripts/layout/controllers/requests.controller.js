@@ -41,7 +41,7 @@
                     $scope.inputrequests = json_data;
                 }
 
-                var ws = new WebSocket('ws://127.0.0.1:8000/ws/ws1?subscribe-broadcast&echo');
+                var ws = new WebSocket('ws://'+$location.host()+'/ws/ws1?subscribe-broadcast&echo');
                 ws.onopen = function() {
                     console.log("websocket connected");
                 };
