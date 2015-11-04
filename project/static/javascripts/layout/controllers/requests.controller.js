@@ -5,9 +5,9 @@
         .module('jass.layout.controllers')
         .controller('RequestsController', RequestsController);
 
-    RequestsController.$inject = ['$scope', 'InputRequests', 'RequestIcons', 'Snackbar'];
+    RequestsController.$inject = ['$scope', '$location', 'InputRequests', 'RequestIcons', 'Snackbar'];
 
-    function RequestsController($scope, InputRequests, RequestIcons, Snackbar) {
+    function RequestsController($scope, $location, InputRequests, RequestIcons, Snackbar) {
         var vm = this;
 
         $scope.inputrequests = [];
@@ -19,7 +19,12 @@
 
         function activate() {
             $scope.viewLoading = true;
-            InputRequests.all().then(inputrequestsSuccessFn, inputrequestsErrorFn);
+            if ($location.path() == "/streamsenseevents") {
+                InputRequests.all("ns_st_sp=1").then(inputrequestsSuccessFn, inputrequestsErrorFn);
+            }
+            else {
+                InputRequests.all().then(inputrequestsSuccessFn, inputrequestsErrorFn);
+            }
 
             function inputrequestsSuccessFn(response, status, headers, config) {
                 $scope.viewLoading = false;
