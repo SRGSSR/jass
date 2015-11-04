@@ -1,4 +1,4 @@
-web: gunicorn project.wsgi:application --workers $WEB_CONCURRENCY
+web: uwsgi --module="project.wsgi:application" --vacuum --processes=1 --virtualenv="/app/.heroku/python/"
 
 
 
