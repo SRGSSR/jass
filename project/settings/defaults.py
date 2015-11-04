@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'meta',
     'djangobower',
+    'ws4redis',
     'project.jass'
 )
 
@@ -71,6 +72,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
+
+# URL that distinguishes websocket connections from normal requests
+WEBSOCKET_URL = '/ws/'
+
+# Set the number of seconds each message shall persited
+WS4REDIS_EXPIRE = 3600
+
+WS4REDIS_HEARTBEAT = '--heartbeat--'
+
+WS4REDIS_PREFIX = 'demo'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
