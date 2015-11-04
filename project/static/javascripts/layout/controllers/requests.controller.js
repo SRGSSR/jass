@@ -50,10 +50,8 @@
                     if (e.data !== "--heartbeat--") {
                         var newrequest = JSON.parse(e.data);
                         parseRequestURLArguments(newrequest);
-                        if (newrequest['ns_st_ev'] !== undefined) {
-                            $scope.inputrequests.unshift(newrequest);
-                            $scope.$apply();
-                        }
+                        $scope.inputrequests.unshift(newrequest);
+                        $scope.$apply();
                     }
                 };
                 ws.onerror = function(e) {
