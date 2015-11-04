@@ -42,10 +42,14 @@
                 };
                 ws.onmessage = function(e) {
                     console.log("Received: " + e.data);
-                    var newrequest = JSON.parse(e.data);
-                    parseRequestHeaders(newrequest);
-                    $scope.inputrequests.unshift(newrequest);
-                    $scope.$apply();
+                    if (e.data !== "--heartbeat--") {
+                        var newrequest = JSON.parse(e.data);
+                        parseRequestURLArguments(newrequest);
+                        if (newrequest['ns_st_ev'] !== undefined) {
+                            $scope.inputrequests.unshift(newrequest);
+                            $scope.$apply();
+                        }
+                    }
                 };
                 ws.onerror = function(e) {
                     console.error(e);
@@ -55,7 +59,7 @@
                 };
 
                 for (var i = 0; i < $scope.inputrequests.length; i++) {
-                    parseRequestHeaders($scope.inputrequests[i]);
+                    parseRequestURLArguments($scope.inputrequests[i]);
                 }
             }
 
@@ -65,7 +69,7 @@
                 console.log(data.error);
             }
 
-            function parseRequestHeaders(req) {
+            function parseRequestURLArguments(req) {
                 var parser = document.createElement('a');
                 parser.href = req.url;
                 var tmp_arguments = parser.search.split('&');
