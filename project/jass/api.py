@@ -20,7 +20,9 @@ class InputRequestListCreateAPIView(generics.ListCreateAPIView):
 
     def post(self, request, *args, **kwargs):
         result = super(InputRequestListCreateAPIView, self).post(request, args, kwargs)
-        message = RedisMessage('Hello everybody')
+        method = request.data['fields']['method']
+        url = request.data['fields']['url']
+        message = RedisMessage(method+' '+url)
         RedisPublisher(facility='ws1', broadcast=True).publish_message(message)
         return result
 

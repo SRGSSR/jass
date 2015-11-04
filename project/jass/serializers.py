@@ -13,8 +13,9 @@ class InputRequestSerializer(serializers.ModelSerializer):
     headers = RequestHeaderSerializer(many=True, required=False)
 
     def create(self, validated_data):
-        headers_data = validated_data.pop('headers')
+        headers_data = validated_data.pop('headers', None)
         input_request = InputRequest.objects.create(**validated_data)
-        for header_data in headers_data:
-            RequestHeader.objects.create(request=input_request, **header_data)
+        if headers_data is not None:
+            for header_data in headers_data:
+                RequestHeader.objects.create(request=input_request, **header_data)
         return input_request
