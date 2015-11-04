@@ -21,7 +21,7 @@
                 controller: 'RequestsController',
                 controllerAs: 'vm',
                 templateUrl: '/static/templates/layout/latestrequests.html'})
-            .when('/streamsense_events', {
+            .when('/streamsenseevents', {
                 controller: 'RequestsController',
                 controllerAs: 'vm',
                 templateUrl: '/static/templates/layout/streamsense_latestrequests.html'})
