@@ -1,6 +1,8 @@
 
 from django.db.models import Q
 from rest_framework import generics
+from ws4redis.publisher import RedisPublisher
+from ws4redis.redis_store import RedisMessage
 
 from project.jass import models
 from project.jass import serializers
@@ -15,6 +17,12 @@ class InputRequestsPagination(pagination.PageNumberPagination):
 class InputRequestListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = serializers.InputRequestSerializer
     pagination_class = InputRequestsPagination
+
+    def post(self, request, *args, **kwargs):
+        result = super(InputRequestListCreateAPIView, self).post(request, args, kwargs)
+        message = RedisMessage('Hello everybody')
+        RedisPublisher(facility='ws1', broadcast=True).publish_message(message)
+        return result
 
     def get_queryset(self):
         queryset = models.InputRequest.objects.all_comScore().order_by('-date')
