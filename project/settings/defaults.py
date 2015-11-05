@@ -84,7 +84,7 @@ SESSION_ENGINE = 'redis_sessions.session'
 SESSION_REDIS_PREFIX = 'session'
 
 import urlparse
-redis_url = urlparse.urlparse(get_env_variable('REDIS_URL'))
+redis_url = urlparse.urlparse(get_env_variable('REDISCLOUD_URL'))
 CACHES = {
         'default': {
             'BACKEND': 'redis_cache.RedisCache',
