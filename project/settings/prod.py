@@ -10,10 +10,9 @@ ALLOWED_HOSTS = [
 
 SITE_ID = 3  # Local=1, Staging=2, Prod=3
 
-# INSTALLED_APPS += ('lockdown',)
-# MIDDLEWARE_CLASSES += ('lockdown.middleware.LockdownMiddleware',)
-#
-# LOCKDOWN_FORM = 'lockdown.forms.LockdownForm'
-# LOCKDOWN_PASSWORDS = ('PlayMobileCodeShines',)
-# LOCKDOWN_URL_EXCEPTIONS = (r'/admin/', r'/static/', r'/staticfiles/')
-#
+WS4REDIS_CONNECTION = {
+    'host': 'pub-redis-13828.eu-west-1-2.2.ec2.garantiadata.com',
+    'port': 13828,
+    'db': 0,
+    'password': 'GOFxkqXF1LZM3ZbV',
+}

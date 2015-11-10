@@ -83,18 +83,18 @@ WS4REDIS_PREFIX = 'demo'
 SESSION_ENGINE = 'redis_sessions.session'
 SESSION_REDIS_PREFIX = 'session'
 
-import urlparse
-redis_url = urlparse.urlparse(get_env_variable('REDISCLOUD_URL'))
-CACHES = {
-        'default': {
-            'BACKEND': 'redis_cache.RedisCache',
-            'LOCATION': '%s:%s' % (redis_url.hostname, redis_url.port),
-            'OPTIONS': {
-                'PASSWORD': redis_url.password,
-                'DB': 0,
-        }
-    }
-}
+# import urlparse
+# redis_url = urlparse.urlparse(get_env_variable('REDISCLOUD_URL'))
+# CACHES = {
+#         'default': {
+#             'BACKEND': 'redis_cache.RedisCache',
+#             'LOCATION': '%s:%s' % (redis_url.hostname, redis_url.port),
+#             'OPTIONS': {
+#                 'PASSWORD': redis_url.password,
+#                 'DB': 0,
+#         }
+#     }
+# }
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
