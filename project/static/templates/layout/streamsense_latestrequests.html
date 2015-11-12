@@ -31,7 +31,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="data_row in inputrequests track by $index" class="{{ $index%2 == 0 && 'highlight' }}">
-            <td>{{data_row.data}}</td>
+            <td><a href="/api/inputrequests/{{date_row.id}}">{{date_row.id}}:{{data_row.date}}</a></td>
             <td>{{data_row.request_arguments.ns_ap_device}}</td>
             <td>{{data_row.request_arguments.ns_st_ev}}<span style="color:#880000">{{data_row.request_arguments.ns_ap_ev}}</span></td>
             <td>{{data_row.request_arguments.ns_st_ep}}<span style="color:#880000">{{data_row.request_arguments.srg_title}}</span></td>

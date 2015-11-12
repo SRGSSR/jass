@@ -3,7 +3,7 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <strong>request <a href="/{{ inputrequest.id }}">#{{ inputrequest.id }}</a></strong>
+                <strong>request <a href="/api/inputrequests/{{ inputrequest.id }}">#{{ inputrequest.id }}</a></strong>
                 <span class="inputrequest__submeta">at {{ inputrequest.date | date:"d MMM yyyy 'at' H:mm"  }}</span> from (IP) {{ inputrequest.origin }}<br/>
             </div>
 
