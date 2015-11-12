@@ -22,16 +22,20 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th>ns_st_ev</th>
-            <th>ns_st_ep</th>
-            <th>ns_st_po</th>
+            <th>date</th>
+            <th>ns_ap_device</th>
+            <th>ns_st_ev / ns_ap_ev</th>
+            <th>ns_st_ep / srg_title</th>
+            <th>ns_st_po / category</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="data_row in inputrequests track by $index" class="{{ $index%2 == 0 && 'highlight' }}">
-            <td>{{data_row.request_arguments.ns_st_ev}}</td>
-            <td>{{data_row.request_arguments.ns_st_ep}}</td>
-            <td>{{data_row.request_arguments.ns_st_po}}</td>
+            <td>{{data_row.data}}</td>
+            <td>{{data_row.request_arguments.ns_ap_device}}</td>
+            <td>{{data_row.request_arguments.ns_st_ev}}{{data_row.request_arguments.ns_ap_ev}}</td>
+            <td>{{data_row.request_arguments.ns_st_ep}}{{data_row.request_arguments.srg_title}}</td>
+            <td>{{data_row.request_arguments.ns_st_po}}{{data_row.request_arguments.category}}</td>
         </tr>
         </tbody>
     </table>
