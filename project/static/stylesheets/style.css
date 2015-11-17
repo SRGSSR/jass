@@ -96,3 +96,8 @@ table tr:nth-child(even) {
 .highlight {
     background-color: #F9F9F9;
 }
+
+.span-alternate-title {
+    color:#880000;
+}
+
