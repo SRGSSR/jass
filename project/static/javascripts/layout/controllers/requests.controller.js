@@ -7,6 +7,11 @@
 
     RequestsController.$inject = ['$scope', '$location', 'InputRequests', 'RequestIcons', 'Snackbar'];
 
+
+    hashCode = function(s){
+      return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
+    }
+
     function RequestsController($scope, $location, InputRequests, RequestIcons, Snackbar) {
         var vm = this;
 
@@ -41,6 +46,11 @@
                     $scope.inputrequests = json_data;
                 }
 
+                angular.forEach($scope.inputrequests, function(value) {
+                    value.srg_test_hash = hashCode(value.request_arguments['srg_test']);
+                    value.srg_test_hash_color = Math.abs(hashCode(value.srg_test_hash)) % 360;
+                });
+
                 var ws = new WebSocket('wss://'+$location.host()+'/ws/ws1?subscribe-broadcast&echo');
                 ws.onopen = function() {
                     console.log("websocket connected");
@@ -58,7 +68,8 @@
                     console.error(e);
                 };
                 ws.onclose = function(e) {
-                    console.log("connection closed");
+                    setTimeout(ws, 1000);
+                    console.log("connection closed, attempting to set timeout to reopen");
                 };
 
                 for (var i = 0; i < $scope.inputrequests.length; i++) {

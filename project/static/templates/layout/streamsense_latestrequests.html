@@ -30,7 +30,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="data_row in inputrequests track by $index" class="{{ $index%2 == 0 && 'highlight' }}">
+        <tr ng-repeat="data_row in inputrequests track by $index" style="background-color: hsl({{ data_row.srg_test_hash_color }}, 50%, 80%)">
             <td><a href="/api/inputrequests/{{date_row.id}}">{{date_row.id}}:{{data_row.date}}</a></td>
             <td>{{data_row.request_arguments.ns_ap_device}}</td>
             <td>{{data_row.request_arguments.ns_st_ev}}<span style="color:#880000">{{data_row.request_arguments.ns_ap_ev}}</span></td>

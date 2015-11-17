@@ -2,7 +2,7 @@
     <div class="col-sm-12">
 
         <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading" style="background-color: hsl({{ inputrequest.srg_test_hash_color }}, 50%, 80%)">
                 <strong>request <a href="/api/inputrequests/{{ inputrequest.id }}">#{{ inputrequest.id }}</a></strong>
                 <span class="inputrequest__submeta">at {{ inputrequest.date | date:"d MMM yyyy 'at' H:mm"  }}</span> from (IP) {{ inputrequest.origin }}<br/>
             </div>
@@ -19,7 +19,7 @@
                 </div>
 
                 <strong>User-agent:</strong> {{ inputrequest.user_agent }}<br/>
-                <strong>Session ID:</strong> {{ inputrequest.sessionid }}<br/>
+                <strong>Session ID:</strong> {{ inputrequest.sessionid }} / srg_test: {{ inputrequest.srg_test_hash_color }}<br/>
 
                 <div class="collapse-group">
                     <strong>Headers: <a class="btn btn-xs btn-default btn-details" href="#">show &raquo;</a></strong>
