@@ -8,9 +8,12 @@
     RequestsController.$inject = ['$scope', '$location', 'InputRequests', 'RequestIcons', 'Snackbar'];
 
 
-    hashCode = function(s){
-      return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
-    }
+    var hashCode = function(s){
+        if (s === undefined || s.length == 0) {
+            return "";
+        }
+        return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
+    };
 
     function RequestsController($scope, $location, InputRequests, RequestIcons, Snackbar) {
         var vm = this;
@@ -45,11 +48,6 @@
                     $scope.number_of_pages = 0;
                     $scope.inputrequests = json_data;
                 }
-
-                angular.forEach($scope.inputrequests, function(value) {
-                    value.srg_test_hash = hashCode(value.request_arguments['srg_test']);
-                    value.srg_test_hash_color = Math.abs(hashCode(value.srg_test_hash)) % 360;
-                });
 
                 var ws = new WebSocket('wss://'+$location.host()+'/ws/ws1?subscribe-broadcast&echo');
                 ws.onopen = function() {
@@ -96,6 +94,10 @@
                     }
                     req.request_arguments[arg[0]] = arg[1];
                 }
+
+                req.srg_test_hash = hashCode(req.request_arguments['srg_test']);
+                req.srg_test_hash_color = Math.abs(hashCode(req.srg_test_hash)) % 360;
+
                 RequestIcons.findAll(req);
             }
         }
