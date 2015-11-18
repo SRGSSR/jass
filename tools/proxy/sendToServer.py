@@ -18,7 +18,7 @@ def start(context, argv):
 #For more info on requests: https://mitmproxy.org/doc/scripting/inlinescripts.html
 # method must be inside ['GET', 'POST']
 
-@concurrent
+# @concurrent
 def request(context, flow):
     if flow.request.host in ['il.srgssr.ch', 'b.scorecardresearch.com', 'sb.scorecardresearch.com']:
 
