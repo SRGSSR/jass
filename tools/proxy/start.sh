@@ -1,10 +1,8 @@
 #! /bin/sh
 PORT=8080
-#JASS_SERVER_2="http://jass-staging.herokuapp.com"
-JASS_API_2="$JASS_SERVER_2/api/inputrequests/"
-
-JASS_SERVER_1="http://jass-prod.herokuapp.com"
-JASS_API_1="$JASS_SERVER_1/api/inputrequests/"
+JASS_API="/api/inputrequests/"
+JASS_SERVER_1="http://jass-prod.herokuapp.com$JASS_API"
+JASS_SERVER_2="http://jass-staging.herokuapp.com$JASS_API"
 
 if ! which mitmdump >/dev/null ; then
   cat <<EOF
