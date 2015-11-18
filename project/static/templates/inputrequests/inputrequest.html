@@ -4,7 +4,9 @@
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color: hsl({{ inputrequest.srg_test_hash_color }}, 50%, 80%)">
                 <strong>request <a href="/api/inputrequests/{{ inputrequest.id }}">#{{ inputrequest.id }}</a></strong>
-                <span class="inputrequest__submeta">at {{ inputrequest.date | date:"d MMM yyyy 'at' H:mm"  }}</span> from (IP) {{ inputrequest.origin }}<br/>
+                <span class="inputrequest__submeta">at {{ inputrequest.date | date:"d MMM yyyy 'at' H:mm"  }}</span>
+                from (IP) {{ inputrequest.origin }}
+                <span class="inputrequest__url">{{ inputrequest.url }}</span>
             </div>
 
             <div class="panel-body">

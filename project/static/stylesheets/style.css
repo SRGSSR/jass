@@ -23,21 +23,32 @@ body {
     padding-bottom: 20px;
 }
 
-.inputrequest {}
+inputrequest {}
 
-.inputrequest .inputrequest__meta {
+inputrequest .panel-heading {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+inputrequest .inputrequest__meta {
     font-weight: bold;
     text-align: left;
     font-size: larger;
     padding-bottom: 19px;
 }
 
-.inputrequest .inputrequest__submeta {
+inputrequest .inputrequest__submeta {
     font-weight: normal;
     color: #595959;
 }
 
-.inputrequest .inputrequest__meta a:hover {
+inputrequest .inputrequest__url {
+    font-weight: normal;
+    color: #888888;
+}
+
+inputrequest .inputrequest__meta a:hover {
     text-decoration: none;
 }
 
