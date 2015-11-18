@@ -9,8 +9,8 @@
 
 
     var hashCode = function(s){
-        if (s === undefined || s.length == 0) {
-            return "";
+        if (s === undefined || s.length == 0 || !((typeof s) === 'string')) {
+            return 0;
         }
         return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
     };
@@ -96,7 +96,7 @@
                 }
 
                 req.srg_test_hash = hashCode(req.request_arguments['srg_test']);
-                req.srg_test_hash_color = Math.abs(hashCode(req.srg_test_hash)) % 360;
+                req.srg_test_hash_color = Math.abs(req.srg_test_hash) % 360;
 
                 RequestIcons.findAll(req);
             }
