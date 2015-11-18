@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/sh
 PORT=8080
 JASS_API="/api/inputrequests/"
 JASS_SERVER_1="http://jass-prod.herokuapp.com$JASS_API"
@@ -16,11 +16,6 @@ exit
 fi
 if ! python test_imports.py ; then
   exit
-fi
-
-JASS_SERVER=$JASS_PROD_SERVER
-if [[ "$1" == "staging" || "$1" == "2" ]] ; then
-  JASS_SERVER=$JASS_STAGING_SERVER
 fi
 
 echo Proxy started. The IP address to use as Manual Proxy in test devices is
