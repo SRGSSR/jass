@@ -1,7 +1,10 @@
 #! /bin/sh
 PORT=8080
-JASS_SERVER="http://jass-prod.herokuapp.com"
-JASS_API="$JASS_SERVER/api/inputrequests/"
+#JASS_SERVER_2="http://jass-staging.herokuapp.com"
+JASS_API_2="$JASS_SERVER_2/api/inputrequests/"
+
+JASS_SERVER_1="http://jass-prod.herokuapp.com"
+JASS_API_1="$JASS_SERVER_1/api/inputrequests/"
 
 if ! which mitmdump >/dev/null ; then
   cat <<EOF
@@ -21,6 +24,7 @@ echo Proxy started. The IP address to use as Manual Proxy in test devices is
 for i in `ifconfig |grep inet |grep -v inet6 |cut -d ' ' -f 2` ; do
   echo $i:8080
 done
-echo You can see the results at: $JASS_SERVER
+echo "You can see the results at: $JASS_SERVER_1."
+echo "                          : $JASS_SERVER_2."
 
-mitmdump -p $PORT -s "sendToServer.py $JASS_API"
+mitmdump -p $PORT -s "sendToServer.py $JASS_API_2" -s "sendToServer.py $JASS_API_1"
