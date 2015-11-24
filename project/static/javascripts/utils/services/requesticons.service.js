@@ -16,42 +16,44 @@
             inputrequest.icons = {};
 
             if (inputrequest.user_agent) {
-                if (inputrequest.user_agent.toLowerCase().indexOf('mac os x')) {
-                    if (inputrequest.user_agent.toLowerCase().indexOf('os x 10.10') != -1) {
+                var lower_user_agent = inputrequest.user_agent.toLowerCase();
+
+                if (lower_user_agent.indexOf('mac os x')) {
+                    if (lower_user_agent.indexOf('os x 10.10') != -1) {
                         inputrequest.icons['os'] = '/static/images/icon-desktop-mac-yosemite.png'
                     }
-                    else if (inputrequest.user_agent.toLowerCase().indexOf('os x 10.11') != -1) {
+                    else if (lower_user_agent.indexOf('os x 10.11') != -1) {
                         inputrequest.icons['os'] = '/static/images/icon-desktop-mac-elcapitan.png'
                     }
                 }
-                else if (inputrequest.user_agent.toLowerCase().indexOf('android')) {
+                else if (lower_user_agent.indexOf('android')) {
                     inputrequest.icons['os'] = '/static/images/icon-os-android.png';
                 }
 
-                if (inputrequest.user_agent.toLowerCase().indexOf('firefox') != -1) {
+                if (lower_user_agent.indexOf('firefox') != -1) {
                     inputrequest.icons['browser'] = '/static/images/icon-browser-firefox.png'
                 }
-                else if (inputrequest.user_agent.toLowerCase().indexOf('chrome') != -1) {
+                else if (lower_user_agent.indexOf('chrome') != -1) {
                     inputrequest.icons['browser'] = '/static/images/icon-browser-chrome.png'
                 }
-                else if (inputrequest.user_agent.toLowerCase().indexOf('safari') != -1) {
+                else if (lower_user_agent.indexOf('safari') != -1) {
                     inputrequest.icons['browser'] = '/static/images/icon-browser-safari.png'
                 }
 
-                if (inputrequest.user_agent.toLowerCase().indexOf('cfnetwork') != -1) { // iOS only
-                    if (inputrequest.user_agent.toLowerCase().indexOf('srfplayer') != -1) {
+                if (lower_user_agent.indexOf('cfnetwork') != -1) { // iOS only
+                    if (lower_user_agent.indexOf('srfplayer') != -1) {
                         inputrequest.icons['app'] = '/static/images/icon-app-ios-play-srf.png';
                     }
-                    else if (inputrequest.user_agent.toLowerCase().indexOf('rtsplayer') != -1) {
+                    else if (lower_user_agent.indexOf('rtsplayer') != -1) {
                         inputrequest.icons['app'] = '/static/images/icon-app-ios-play-rts.png';
                     }
-                    else if (inputrequest.user_agent.toLowerCase().indexOf('rsiplayer') != -1) {
+                    else if (lower_user_agent.indexOf('rsiplayer') != -1) {
                         inputrequest.icons['app'] = '/static/images/icon-app-ios-play-rsi.png';
                     }
-                    else if (inputrequest.user_agent.toLowerCase().indexOf('rtrplayer') != -1) {
+                    else if (lower_user_agent.indexOf('rtrplayer') != -1) {
                         inputrequest.icons['app'] = '/static/images/icon-app-ios-play-rtr.png';
                     }
-                    else if (inputrequest.user_agent.toLowerCase().indexOf('swiplayer') != -1) {
+                    else if (lower_user_agent.indexOf('swiplayer') != -1) {
                         inputrequest.icons['app'] = '/static/images/icon-app-ios-play-swi.png';
                     }
                 }
