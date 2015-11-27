@@ -2,9 +2,9 @@ from django.db import models
 
 
 # About custom objects Manager of Django model classes: https://docs.djangoproject.com/en/1.8/topics/db/managers/
-class InputRequestManger(models.Manager):
+class InputRequestManager(models.Manager):
     def get_queryset(self):
-        return super(InputRequestManger, self).get_queryset().order_by('-date')
+        return super(InputRequestManager, self).get_queryset().order_by('-date')
 
     def all_comScore(self):
         return self.get_queryset().filter(url__contains='b.scorecardresearch.com')
@@ -14,7 +14,7 @@ class InputRequestManger(models.Manager):
 # or http://werkzeug.pocoo.org/docs/0.10/utils/#url-helpers
 
 class InputRequest(models.Model):
-    objects = InputRequestManger()
+    objects = InputRequestManager()
 
     date = models.DateTimeField(auto_now_add=True)
     origin = models.CharField(max_length=25, null=True, blank=True)
@@ -47,3 +47,9 @@ class RequestHeader(models.Model):
     key = models.CharField(max_length=10000, null=True, blank=True)
     value = models.CharField(max_length=10000, null=True, blank=True)
     request = models.ForeignKey(InputRequest, null=True, blank=True, related_name='headers')
+
+class ConnectedProxy(models.Model):
+    externalIp = models.CharField(max_length=100, null=True, blank=True)
+    localIp = models.CharField(max_length=100, null=True, blank=True)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    lastDataReceived = models.DateTimeField(auto_now=True)

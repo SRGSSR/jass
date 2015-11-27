@@ -6,6 +6,10 @@ class RequestHeaderSerializer(serializers.ModelSerializer):
         model = RequestHeader
         fields = ('key', 'value')
 
+class ConnectProxySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ConnectedProxy
+
 class InputRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = InputRequest

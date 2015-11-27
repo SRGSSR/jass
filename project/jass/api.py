@@ -9,17 +9,30 @@ from project.jass import serializers
 from rest_framework import pagination
 import json
 
+from project.jass.models import ConnectedProxy
+
+# Test POST Request:
+# curl -d "{'url': 'http://il.srgssr.ch/integrationlayer/1.0/ue/rts/video/mostClicked.json?pageSize=20&period=24'{'url', 'headers': [{'value': : 'debug/debugVersion (Linux; U; Android 5.0.1; HTC One_M8 Build/LRX22C)''http://il.srgssr.ch/integrationlayer/1.0/ue/rts/video/mostClicked.json?pageSize=20&period=24', 'headers': , 'key': [{'value': 'debug/debugVersion (Linux; U; Android 5.0.1; HTC One_M8 Build'/ULsReXr2-2ACg)e'nt', 'key'}, {'value': 'il.srgssr.ch', 'key': 'User-Agent'}, {'value': 'il.srgssr.ch': , 'key''Host'}: 'Host'}, {, {'value': 'Keep-Alive', 'key': 'Connection''value': }, 'Keep-Alive', 'key': 'Connection'{}, {'value''value': : 'gzip', 'key': 'Accept-Encoding''gzip', 'key': 'Accept-Encoding'}], 'method': 'GET', 'origin'}], : '192.168.3.127'}'method': 'GET', 'origin': '192.168.3.127'}" http://127.0.0.1:8000/api/inputrequests/
+
 class InputRequestsPagination(pagination.PageNumberPagination):
     page_size = 100
     page_size_query_param = 'page_size'
     max_page_size = 1000
 
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 class InputRequestListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = serializers.InputRequestSerializer
     pagination_class = InputRequestsPagination
 
     def post(self, request, *args, **kwargs):
+        ConnectedProxy.objects.update_or_create(externalIp=get_client_ip(request), localIp="localIp", name="unkownProxy")
         result = super(InputRequestListCreateAPIView, self).post(request, args, kwargs)
         if result.status_code == 201:
             message = RedisMessage(json.dumps(result.data))
@@ -63,4 +76,8 @@ class InputRequestBUListAPIView(generics.ListCreateAPIView):
 class InputRequestDetailAPIView(generics.RetrieveAPIView):
     queryset = models.InputRequest.objects.all()
     serializer_class = serializers.InputRequestSerializer
+
+class ConnectedProxyListAPIView(generics.ListCreateAPIView):
+    queryset = models.ConnectedProxy.objects.all()
+    serializer_class = serializers.ConnectProxySerializer
 
