@@ -5,8 +5,8 @@
         .module('jass.layout.controllers')
         .controller('StatusController', StatusController);
 
-    angular
-        .module('jass.layout.controllers', [ 'yaru22.angular-timeago' ]);
+//    angular
+//        .module('jass.layout.controllers', [ 'yaru22.angular-timeago' ]);
 
     StatusController.$inject = ['$scope', '$http'];
 
