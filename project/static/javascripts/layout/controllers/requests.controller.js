@@ -5,7 +5,7 @@
         .module('jass.layout.controllers')
         .controller('RequestsController', RequestsController);
 
-    RequestsController.$inject = ['$scope', '$location', 'InputRequests', 'RequestIcons', 'Snackbar'];
+    RequestsController.$inject = ['$scope', '$location', 'InputRequests', 'RequestIcons', 'Snackbar', '$routeParams'];
 
 
     var hashCode = function(s){
@@ -15,13 +15,20 @@
         return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
     };
 
-    function RequestsController($scope, $location, InputRequests, RequestIcons, Snackbar) {
+    function RequestsController($scope, $location, InputRequests, RequestIcons, Snackbar, $routeParams) {
         var vm = this;
 
         $scope.inputrequests = [];
         $scope.is_paginated = false;
         $scope.number_of_pages = 0;
         $scope.range = new Array(100);
+
+        $scope.getRequestArgument = function(row, name) {
+            console.log("getRequestArgument(" + name);
+            return $scope.data_row.request_arguments[name];
+        }
+
+        $scope.fields = $routeParams["f"].split(",");
 
         activate();
 

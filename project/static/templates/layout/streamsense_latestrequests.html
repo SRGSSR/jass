@@ -3,19 +3,13 @@
         <thead>
         <tr>
             <th>date</th>
-            <th>ns_ap_device</th>
-            <th>ns_st_ev / <span class="span-alternate-title">ns_ap_ev</span></th>
-            <th>ns_st_ep / <span class="span-alternate-title">srg_title</span></th>
-            <th>ns_st_po / <span class="span-alternate-title">category</span></th>
+            <th ng-repeat="field in fields">{{field}}</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="data_row in inputrequests track by $index" style="background-color: hsl({{ data_row.srg_test_hash_color }}, 50%, 80%)">
             <td><a href="/api/inputrequests/{{data_row.id}}">{{data_row.id}}:{{data_row.date}}</a></td>
-            <td>{{data_row.request_arguments.ns_ap_device}}</td>
-            <td>{{data_row.request_arguments.ns_st_ev}} / <span class="span-alternate-title">{{data_row.request_arguments.ns_ap_ev}}</span></td>
-            <td>{{data_row.request_arguments.ns_st_ep}} / <span class="span-alternate-title">{{data_row.request_arguments.srg_title}}</span></td>
-            <td>{{data_row.request_arguments.ns_st_po}} / <span class="span-alternate-title">{{data_row.request_arguments.category}}</span></td>
+            <td ng-repeat="field in fields">{{data_row.request_arguments[field]}}</td>
         </tr>
         </tbody>
     </table>
