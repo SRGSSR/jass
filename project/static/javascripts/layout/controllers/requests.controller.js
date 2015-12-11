@@ -28,18 +28,14 @@
             return $scope.data_row.request_arguments[name];
         }
 
-        $scope.fields = $routeParams["f"].split(",");
+        $scope.streamsense_fields = $routeParams["f"].split(",");
+        $scope.comscore_fields = $routeParams["cf"].split(",");
 
         activate();
 
         function activate() {
             $scope.viewLoading = true;
-            if ($location.path() == "/streamsenseevents") {
-                InputRequests.all("ns_st_sp=1").then(inputrequestsSuccessFn, inputrequestsErrorFn);
-            }
-            else {
-                InputRequests.all().then(inputrequestsSuccessFn, inputrequestsErrorFn);
-            }
+            InputRequests.all().then(inputrequestsSuccessFn, inputrequestsErrorFn);
 
             function inputrequestsSuccessFn(response, status, headers, config) {
                 $scope.viewLoading = false;
@@ -93,17 +89,34 @@
                 parser.href = req.url;
                 var tmp_arguments = parser.search.split('&');
                 req.request_arguments = {};
+                req.request_arguments_count = 0;
+
+                if (req.url.indexOf("il.srgssr.ch/integrationlayer") >= 1) {
+                    req.request_type = "il";
+                } else {
+                    req.request_type = "comscore";
+                }
 
                 for (var j = 0; j < tmp_arguments.length; j++) {
                     var arg = tmp_arguments[j].split('=');
                     if (arg[0][0] === "?") {
                         arg[0] = arg[0].substring(1);
                     }
+                    if (arg[0] == "ns_st_sp" && arg[1] == "1") {
+                        req.request_type = "streamsense";
+                    }
                     req.request_arguments[arg[0]] = arg[1];
                 }
 
+
                 req.srg_test_hash = hashCode(req.request_arguments['srg_test']);
-                req.srg_test_hash_color = Math.abs(req.srg_test_hash) % 360;
+                if (req.request_type=="il") {
+                    req.srg_test_hash_color = 100;
+                } else if (req.request_type=="streamsense") {
+                    req.srg_test_hash_color = 200;
+                } else if (req.request_type=="comscore") {
+                    req.srg_test_hash_color = 50;
+                }
 
                 RequestIcons.findAll(req);
             }

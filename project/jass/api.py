@@ -40,7 +40,7 @@ class InputRequestListCreateAPIView(generics.ListCreateAPIView):
         return result
 
     def get_queryset(self):
-        queryset = models.InputRequest.objects.all_comScore().order_by('-date')
+        queryset = models.InputRequest.objects.all().order_by('-date')
 
         for k,v in self.request.query_params.items():
             if k == 'origin':

@@ -3,14 +3,19 @@
         <thead>
         <tr>
             <th>date</th>
-            <th ng-repeat="field in fields">{{field}}</th>
+            <th ng-repeat="field in streamsense_fields">{{field}}</th>
+        </tr>
+        <tr>
+            <th>date</th>
+            <th ng-repeat="field in comscore_fields">{{field}}</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="data_row in inputrequests track by $index" style="background-color: hsl({{ data_row.srg_test_hash_color }}, 50%, 80%)">
             <td><a target="_blank" href="/api/inputrequests/{{data_row.id}}">{{data_row.id}}:{{data_row.date}}</a></td>
-            <td ng-if="data_row.request_arguments.length != 0" ng-repeat="field in fields">{{data_row.request_arguments[field]}}</td>
-            <td ng-if="data_row.request_arguments.length == 0" colspan="{{fields.length}}">{{data_row.url}}</td>
+            <td ng-if="data_row.request_type=='il'" colspan="{{streamsense_fields.length}}">{{data_row.url}}</td>
+            <td ng-if="data_row.request_type=='streamsense'" ng-repeat="field in streamsense_fields">{{data_row.request_arguments[field]}}</td>
+            <td ng-if="data_row.request_type=='comscore'" ng-repeat="field in comscore_fields">{{data_row.request_arguments[field]}}</td>
         </tr>
         </tbody>
     </table>
