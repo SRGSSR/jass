@@ -25,4 +25,4 @@ done
 echo "You can see the results at: $JASS_SERVER_1."
 echo "                          : $JASS_SERVER_2."
 
-mitmdump -p $PORT -s "sendToServer.py $JASS_SERVER_2" -s "sendToServer.py $JASS_SERVER_1"
+mitmdump --stream 300k -p $PORT -s "sendToServer.py $JASS_SERVER_2" -s "sendToServer.py $JASS_SERVER_1" | tee log_mitm.txt

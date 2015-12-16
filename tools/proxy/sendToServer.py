@@ -20,7 +20,7 @@ def start(context, argv):
 
 @concurrent
 def request(context, flow):
-    if flow.request.host in ['il.srgssr.ch', 'b.scorecardresearch.com', 'sb.scorecardresearch.com']:
+    if flow.request.host in ['il.srf.ch', 'il.srgssr.ch', 'b.scorecardresearch.com', 'sb.scorecardresearch.com']:
 
         headers = []
         user_agent = None
@@ -36,9 +36,15 @@ def request(context, flow):
         payload = {
             "method": flow.request.method.upper(),
             "url": flow.request.url.strip(),
+            "content": flow.request.content,
             "headers": headers,
             "origin": flow.client_conn.address.host
         }
+
+	f = open('log_payload.txt','a')
+	f.write(str(payload))
+	f.write("\n")
+	f.close()
 
         if user_agent is not None:
             payload['user_agent'] = user_agent
@@ -48,4 +54,3 @@ def request(context, flow):
 #            payload['sessionid'] = cookies.get("UID")[0]
 
         r = requests.post(context.api, json=payload)
-        print 10*'-', r.status_code, 80*"-"
