@@ -46,7 +46,7 @@ class InputRequestListCreateAPIView(generics.ListCreateAPIView):
             # Catch up here first special case of BU parameter, to ease the filtering of all queries according to it.
             if k == 'bu':
                 # https://docs.djangoproject.com/en/1.8/topics/db/queries/#complex-lookups-with-q
-                bu_filter = Q(url__contains='srg_unit='+k.lower()) | Q(url__contains='srg_unit='+k.upper()) | Q(url__contains='/ue/'+k.lower())
+                bu_filter = Q(url__contains='srg_unit='+v.lower()) | Q(url__contains='srg_unit='+v.upper()) | Q(url__contains='/ue/'+v.lower())
                 queryset = queryset.filter(bu_filter)
             elif k == 'origin':
                 queryset = queryset.filter(method=v)
