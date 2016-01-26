@@ -3,14 +3,14 @@
 
     angular
         .module('jass.layout.controllers')
-        .controller('StatusController', StatusController);
+        .controller('ProxiesController', ProxiesController);
 
 //    angular
 //        .module('jass.layout.controllers', [ 'yaru22.angular-timeago' ]);
 
-    StatusController.$inject = ['$scope', '$http'];
+    ProxiesController.$inject = ['$scope', '$http'];
 
-    function StatusController($scope, $http) {
+    function ProxiesController($scope, $http) {
         var vm = this;
         $http.get( '/api/proxies/' ).success( function ( data ) {
                 $scope.proxyList = data;
