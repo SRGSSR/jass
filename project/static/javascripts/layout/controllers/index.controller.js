@@ -21,7 +21,11 @@
         };
 
         $scope.seeLatestRequests = function(bu) {
-            window.location = "/inputrequests/" + bu;
+            var url = "/inputrequests/" ;
+            if (bu !== undefined) {
+                url += "?bu="+bu;
+            }
+            window.location = url;
         };
     }
 
