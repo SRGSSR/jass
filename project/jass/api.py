@@ -42,14 +42,13 @@ class InputRequestListCreateAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
         queryset = models.InputRequest.objects.all().order_by('-date')
 
-        bu = self.request.GET.get('bu', None)
-        if bu is not None:
-            # https://docs.djangoproject.com/en/1.8/topics/db/queries/#complex-lookups-with-q
-            bu_filter = Q(url__contains='srg_unit='+bu.lower()) | Q(url__contains='srg_unit='+bu.upper())
-            queryset = queryset.filter(bu_filter)
-
         for k,v in self.request.query_params.items():
-            if k == 'origin':
+            # Catch up here first special case of BU parameter, to ease the filtering of all queries according to it.
+            if k == 'bu':
+                # https://docs.djangoproject.com/en/1.8/topics/db/queries/#complex-lookups-with-q
+                bu_filter = Q(url__contains='srg_unit='+k.lower()) | Q(url__contains='srg_unit='+k.upper()) | Q(url__contains='/ue/'+k.lower())
+                queryset = queryset.filter(bu_filter)
+            elif k == 'origin':
                 queryset = queryset.filter(method=v)
             elif k == 'url':
                 queryset = queryset.filter(url=v)
