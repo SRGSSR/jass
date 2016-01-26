@@ -17,14 +17,14 @@
                 controller: 'IndexController',
                 controllerAs: 'vm',
                 templateUrl: '/static/templates/layout/index.html'})
+            .when('/proxies', {
+                controller: 'ProxiesController',
+                controllerAs: 'vm',
+                templateUrl: '/static/templates/layout/proxies.html'})
             .when('/requests', {
                 controller: 'RequestsController',
                 controllerAs: 'vm',
                 templateUrl: '/static/templates/layout/latestrequests.html'})
-            .when('/status', {
-                controller: 'StatusController',
-                controllerAs: 'vm',
-                templateUrl: '/static/templates/layout/status.html'})
             .when('/streamsenseevents', {
                 controller: 'RequestsController',
                 controllerAs: 'vm',
