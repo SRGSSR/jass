@@ -26,7 +26,7 @@
         $scope.getRequestArgument = function(row, name) {
             console.log("getRequestArgument(" + name);
             return $scope.data_row.request_arguments[name];
-        }
+        };
 
         $scope.streamsense_fields = $routeParams["f"].split(",");
         $scope.comscore_fields = $routeParams["cf"].split(",");
