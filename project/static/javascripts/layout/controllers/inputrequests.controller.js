@@ -53,6 +53,10 @@
                     $scope.inputrequests = json_data;
                 }
 
+                for (var i = 0; i < $scope.inputrequests.length; i++) {
+                    parseRequestURLArguments($scope.inputrequests[i]);
+                }
+
                 var ws = new WebSocket('wss://'+$location.host()+'/ws/ws1?subscribe-broadcast&echo');
                 ws.onopen = function() {
                     console.log("websocket connected");
@@ -73,10 +77,6 @@
                     setTimeout(ws, 1000);
                     console.log("connection closed, attempting to set timeout to reopen");
                 };
-
-                for (var i = 0; i < $scope.inputrequests.length; i++) {
-                    parseRequestURLArguments($scope.inputrequests[i]);
-                }
             }
 
             function inputrequestsErrorFn(data, status, headers, config) {
