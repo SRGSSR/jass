@@ -17,12 +17,13 @@
 
         return InputRequests;
 
-        function all(params) {
+        function all(bu) {
             var url =  '/api/inputrequests/';
-            if (params !== undefined) {
-                url += "?"+params;
+            var params = {};
+            if (bu !== undefined) {
+                params['bu'] = bu;
             }
-            return $http.get(url);
+            return $http.get(url, {params: params});
         }
 
         function create(content) {

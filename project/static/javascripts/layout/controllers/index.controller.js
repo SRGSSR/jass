@@ -18,7 +18,11 @@
             else {
                 window.location = "/comparisons/"+val+"/play";
             }
-        }
+        };
+
+        $scope.seeLatestRequests = function(bu) {
+            window.location = "/inputrequests/" + bu;
+        };
     }
 
 })();

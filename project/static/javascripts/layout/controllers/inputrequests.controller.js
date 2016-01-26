@@ -5,8 +5,7 @@
         .module('jass.layout.controllers')
         .controller('InputRequestsController', InputRequestsController);
 
-    InputRequestsController.$inject = ['$scope', '$location', 'InputRequests', 'RequestIcons', 'Snackbar', '$routeParams'];
-
+    InputRequestsController.$inject = ['$scope', '$location', '$routeParams', 'InputRequests', 'RequestIcons', 'Snackbar'];
 
     var hashCode = function(s){
         if (s === undefined || s.length == 0 || !((typeof s) === 'string')) {
@@ -15,8 +14,13 @@
         return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
     };
 
-    function InputRequestsController($scope, $location, InputRequests, RequestIcons, Snackbar, $routeParams) {
+    function InputRequestsController($scope, $location, $routeParams, InputRequests, RequestIcons, Snackbar) {
         var vm = this;
+
+        vm.bu = "All";
+        if ($routeParams.bu !== undefined) {
+            vm.bu = $routeParams.bu;
+        }
 
         $scope.inputrequests = [];
         $scope.is_paginated = false;
@@ -32,7 +36,7 @@
 
         function activate() {
             $scope.viewLoading = true;
-            InputRequests.all().then(inputrequestsSuccessFn, inputrequestsErrorFn);
+            InputRequests.all($routeParams.bu).then(inputrequestsSuccessFn, inputrequestsErrorFn);
 
             function inputrequestsSuccessFn(response, status, headers, config) {
                 $scope.viewLoading = false;

@@ -21,10 +21,16 @@
                 controller: 'ProxiesController',
                 controllerAs: 'vm',
                 templateUrl: '/static/templates/layout/proxies.html'})
+
             .when('/inputrequests', {
                 controller: 'InputRequestsController',
                 controllerAs: 'vm',
                 templateUrl: '/static/templates/layout/latestrequests.html'})
+            .when('/inputrequests/:bu', {
+                controller: 'InputRequestsController',
+                controllerAs: 'vm',
+                templateUrl: '/static/templates/layout/latestrequests.html'})
+
             .when('/streamsenseevents', {
                 controller: 'RequestsController',
                 controllerAs: 'vm',
