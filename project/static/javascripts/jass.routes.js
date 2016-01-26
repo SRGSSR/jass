@@ -21,8 +21,8 @@
                 controller: 'ProxiesController',
                 controllerAs: 'vm',
                 templateUrl: '/static/templates/layout/proxies.html'})
-            .when('/requests', {
-                controller: 'RequestsController',
+            .when('/inputrequests', {
+                controller: 'InputRequestsController',
                 controllerAs: 'vm',
                 templateUrl: '/static/templates/layout/latestrequests.html'})
             .when('/streamsenseevents', {

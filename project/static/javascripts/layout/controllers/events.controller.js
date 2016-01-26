@@ -91,10 +91,12 @@
                 req.request_arguments = {};
                 req.request_arguments_count = 0;
 
-                if (req.url.indexOf("il.srgssr.ch/integrationlayer") >= 1) {
-                    req.request_type = "il";
-                } else {
-                    req.request_type = "comscore";
+                if (typeof req.url != "undefined" && req.url !== null) {
+                    if (req.url.indexOf("il.srgssr.ch/integrationlayer") >= 1) {
+                        req.request_type = "il";
+                    } else {
+                        req.request_type = "comscore";
+                    }
                 }
 
                 for (var j = 0; j < tmp_arguments.length; j++) {
