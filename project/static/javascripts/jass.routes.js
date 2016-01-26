@@ -39,7 +39,6 @@
                 controller: 'ComparisonsController',
                 controllerAs: 'vm',
                 templateUrl: '/static/templates/layout/comparisons.html'})
-            .otherwise('/');
     }
 })();
 
