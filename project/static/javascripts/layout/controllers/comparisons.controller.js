@@ -28,12 +28,11 @@
             vm.table.media_id = $routeParams.media_id;
             vm.table.event = $routeParams.event;
 
-            var url = 'ns_st_ci='+vm.table.media_id;
+            var options = {"ns_st_ci": vm.table.media_id};
             if (vm.table.event !== undefined) {
-                url += '&ns_st_ev='+vm.table.event;
+                options["ns_st_ev"] = vm.table.event;
             }
-
-            InputRequests.all(url).then(successFn, errorFn);
+            InputRequests.all(options).then(successFn, errorFn);
 
             function successFn(data, status, headers, config) {
                 $scope.viewLoading = false;

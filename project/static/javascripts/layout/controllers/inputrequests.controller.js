@@ -16,11 +16,7 @@
 
     function InputRequestsController($scope, $location, $routeParams, InputRequests, RequestIcons, Snackbar) {
         var vm = this;
-
-        vm.bu = "All";
-        if ($routeParams.bu !== undefined) {
-            vm.bu = $routeParams.bu;
-        }
+        vm.bu = ($routeParams.bu !== undefined) ? $routeParams.bu : "All";
 
         $scope.inputrequests = [];
         $scope.is_paginated = false;
@@ -36,7 +32,9 @@
 
         function activate() {
             $scope.viewLoading = true;
-            InputRequests.all($routeParams.bu).then(inputrequestsSuccessFn, inputrequestsErrorFn);
+
+            var options = ($routeParams.bu !== undefined) ? { "bu": $routeParams.bu } : undefined;
+            InputRequests.all(options).then(inputrequestsSuccessFn, inputrequestsErrorFn);
 
             function inputrequestsSuccessFn(response, status, headers, config) {
                 $scope.viewLoading = false;

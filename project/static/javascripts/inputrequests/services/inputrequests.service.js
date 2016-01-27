@@ -17,12 +17,9 @@
 
         return InputRequests;
 
-        function all(bu) {
+        function all(options) {
             var url =  '/api/inputrequests/';
-            var params = {};
-            if (bu !== undefined) {
-                params['bu'] = bu;
-            }
+            var params = options || {};
             return $http.get(url, {params: params});
         }
 
