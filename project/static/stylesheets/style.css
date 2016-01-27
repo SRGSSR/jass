@@ -112,3 +112,49 @@ table tr:nth-child(even) {
     color:#880000;
 }
 
+#search-container  {
+    padding-top: 0;
+    padding-left: 15px;
+    padding-bottom: 20px;
+}
+
+#search-input {
+    -webkit-appearance: none;
+    -webkit-background-clip: border-box;
+    -webkit-background-origin: padding-box;
+    -webkit-background-size: auto;
+    -webkit-rtl-ordering: logical;
+    -webkit-user-select: text;
+    -webkit-writing-mode: horizontal-tb;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: rgba(0, 0, 0, 0);
+    background-origin: padding-box;
+    background-size: auto;
+    border-bottom-color: rgb(128, 128, 128);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-image-outset: 0px;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    border-left-color: rgb(152, 152, 159);
+    border-left-style: solid;
+    border-left-width: 0px;
+    border-right-color: rgb(152, 152, 159);
+    border-right-style: solid;
+    border-right-width: 0px;
+    border-top-color: rgb(152, 152, 159);
+    border-top-style: solid;
+    border-top-width: 0px;
+    box-sizing: border-box;
+    color: rgb(72, 176, 227);
+    font-size: 28px;
+    line-height: 47px;
+    padding: 1px;
+    text-align: start;
+    width: 100%;
+    word-spacing: 0px;
+    writing-mode: lr-tb;
+}

@@ -36,7 +36,7 @@
                 controllerAs: 'vm',
                 templateUrl: '/static/templates/layout/latestevents.html'})
 
-            .when('/comparisons/:media_id/:event', {
+            .when('/comparisons/:event', {
                 controller: 'ComparisonsController',
                 controllerAs: 'vm',
                 templateUrl: '/static/templates/layout/comparisons.html'})

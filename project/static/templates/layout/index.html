@@ -1,59 +1,8 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-12 center-block">
-            <div class="input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="Media ID" id="mediaid-input">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" ng-click="compareRequests();">Compare Requests for Events 'Play'</button>
-                </span>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
         <div class="col-md-12">
             <div>
-                <h4>
-                    Comparison Examples (click on a media ID to use it):
-                </h4>
-                <table class="table">
-                    <tr>
-                        <th>BU</th>
-                        <th>Media ID</th>
-                        <th>Title</th>
-                        <th>Video</th>
-                    </tr>
-                    <tr>
-                        <td>SRF</td>
-                        <td>
-                            <a href="javascript:selectMedia('0045930a-eb3c-4863-8e54-306f061eabe1');" title="Select ID!">0045930a-eb3c-4863-8e54-306f061eabe1</a>
-                        <td>
-                            10vor10 vom 23.09.2015
-                            <a target="_self" href="http://www.srf.ch/play/tv/10vor10/video/10vor10-vom-23-09-2015?id=0045930a-eb3c-4863-8e54-306f061eabe1">
-                                <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
-                            </a>
-                        </td>
-                        <td class="video-cell">
-                            <iframe src="http://tp.srgssr.ch/p/rts/embed?urn=urn:srf:video:0045930a-eb3c-4863-8e54-306f061eabe1" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>RTS</td>
-                        <td>
-                            <a href="javascript:selectMedia('7068593');" title="Select ID!">7068593</a>
-                        <td>
-                            ABE: La stévia: le bon sucre vert?
-                            <a target="_self" href="http://www.rts.ch/play/tv/a-bon-entendeur/video/la-stevia-le-bon-sucre-vert?id=7068593">
-                                <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
-                            </a>
-                        </td>
-                        <td class="video-cell">
-                            <iframe src="http://tp.srgssr.ch/p/rts/embed?urn=urn:rts:video:7068593" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div>
+                <button type="button" class="btn btn-default btn-lg" ng-click="compareRequests();">Compare Play Events Live</button>
                 <div class="btn-group">
                     <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         See Latest Requests Live <span class="caret"></span>
@@ -68,14 +17,9 @@
                         <li><a href="#" ng-click="seeLatestRequests('swi');">SWI</a></li>
                     </ul>
                 </div>
-                <button type="button" class="btn btn-default btn-lg" ng-click="seeLatestEvents();">See Streamsense Events Live!</button>
+                <button type="button" class="btn btn-default btn-lg" ng-click="seeLatestEvents();">See Streamsense Events Live</button>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    function selectMedia(media_id) {
-        $("#mediaid-input").val(media_id);
-    }
-</script>

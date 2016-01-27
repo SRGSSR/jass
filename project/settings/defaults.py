@@ -145,5 +145,6 @@ BOWER_INSTALLED_APPS = (
     'angular-route',
     'angular-resource',
     'angular-cookies',
-    'snackbarjs'
+    'snackbarjs',
+    'bootstrap-horizon'
 )

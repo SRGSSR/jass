@@ -1,59 +1,53 @@
-<div class="row">
-    <div class="col-sm-12">
+<div class="panel panel-default">
+    <div class="panel-heading" style="background-color: hsl({{ inputrequest.srg_test_hash_color }}, 50%, 80%)">
+        <strong>request <a target=_self href="/api/inputrequests/{{ inputrequest.id }}">#{{ inputrequest.id }}</a></strong>
+        <span class="inputrequest__submeta">at {{ inputrequest.date | date:"d MMM yyyy 'at' H:mm"  }}</span>
+        from (IP) <strong>{{ inputrequest.origin }}</strong>
+        <span class="inputrequest__url">{{ inputrequest.url }}</span>
+    </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading" style="background-color: hsl({{ inputrequest.srg_test_hash_color }}, 50%, 80%)">
-                <strong>request <a target=_self href="/api/inputrequests/{{ inputrequest.id }}">#{{ inputrequest.id }}</a></strong>
-                <span class="inputrequest__submeta">at {{ inputrequest.date | date:"d MMM yyyy 'at' H:mm"  }}</span>
-                from (IP) <strong>{{ inputrequest.origin }}</strong>
-                <span class="inputrequest__url">{{ inputrequest.url }}</span>
+    <div class="panel-body">
+        <div ng-if="inputrequest.icons.os" class="pull-right">
+            <img src="{{ inputrequest.icons.os }}" width="50" class="img-thumbnail">
+        </div>
+        <div ng-if="inputrequest.icons.app" class="pull-right">
+            <img src="{{ inputrequest.icons.app }}" width="50" class="img-thumbnail">
+        </div>
+        <div ng-if="inputrequest.icons.browser" class="pull-right">
+            <img src="{{ inputrequest.icons.browser }}" width="50" class="img-thumbnail">
+        </div>
+
+        <strong>User-agent:</strong> {{ inputrequest.user_agent }}<br/>
+        <strong>Session ID:</strong> {{ inputrequest.sessionid }} / srg_test: {{ inputrequest.request_arguments['srg_test'] }}<br/>
+
+        <div class="collapse-group">
+            <strong>Headers: <a class="btn btn-xs btn-default btn-details" href="#">show &raquo;</a></strong>
+            <div class="collapse">
+                <table class="collapse" border="0">
+                    <tr ng-repeat="header in inputrequest.headers">
+                        <td>{{ header.key }}</td>
+                        <td>{{ header.value }}</td>
+                    </tr>
+                </table>
             </div>
+        </div>
 
-            <div class="panel-body">
-                <div ng-if="inputrequest.icons.os" class="pull-right">
-                    <img src="{{ inputrequest.icons.os }}" width="50" class="img-thumbnail">
-                </div>
-                <div ng-if="inputrequest.icons.app" class="pull-right">
-                    <img src="{{ inputrequest.icons.app }}" width="50" class="img-thumbnail">
-                </div>
-                <div ng-if="inputrequest.icons.browser" class="pull-right">
-                    <img src="{{ inputrequest.icons.browser }}" width="50" class="img-thumbnail">
-                </div>
+        <div class="collapse-group">
+            <strong>Full URL: <a class="btn btn-xs btn-default btn-details" href="#">show &raquo;</a></strong>
+            <div class="collapse">
+                {{ inputrequest.url }}
+            </div>
+        </div>
 
-                <strong>User-agent:</strong> {{ inputrequest.user_agent }}<br/>
-                <strong>Session ID:</strong> {{ inputrequest.sessionid }} / srg_test: {{ inputrequest.request_arguments['srg_test'] }}<br/>
-
-                <div class="collapse-group">
-                    <strong>Headers: <a class="btn btn-xs btn-default btn-details" href="#">show &raquo;</a></strong>
-                    <div class="collapse">
-                        <table class="collapse" border="0">
-                            <tr ng-repeat="header in inputrequest.headers">
-                                <td>{{ header.key }}</td>
-                                <td>{{ header.value }}</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="collapse-group">
-                    <strong>Full URL: <a class="btn btn-xs btn-default btn-details" href="#">show &raquo;</a></strong>
-                    <div class="collapse">
-                        {{ inputrequest.url }}
-                    </div>
-                </div>
-
-                <div class="collapse-group">
-                    <strong>Request Arguments: <a class="btn btn-xs btn-default btn-details" href="#">show &raquo;</a></strong>
-                    <div class="collapse">
-                        <table class="collapse" border="0">
-                            <tr ng-repeat="(key, value) in inputrequest.request_arguments">
-                                <td>{{ key }}</td>
-                                <td>{{ value }}</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
+        <div class="collapse-group">
+            <strong>Request Arguments: <a class="btn btn-xs btn-default btn-details" href="#">show &raquo;</a></strong>
+            <div class="collapse">
+                <table class="collapse" border="0">
+                    <tr ng-repeat="(key, value) in inputrequest.request_arguments">
+                        <td>{{ key }}</td>
+                        <td>{{ value }}</td>
+                    </tr>
+                </table>
             </div>
         </div>
 

@@ -1,39 +1,59 @@
-<div class="row-fluid" ng-cloak>
-    <div class="container">
-        <div class="col-sm-12">
-            <div ng-show="vm.table.requests && vm.table.requests.length">
-                <h3>Comparison for media with <em>ns_st_ci</em> = {{ vm.table.media_id }} for <em>ns_st_ev</em> = {{ vm.table.event }}</h3>
-                <p>The current rule is: 1st request serves as reference. Comparison is made with the 10 latest requests, for that ID.</p>
-                <table border="0">
-                    <tr>
-                        <th style="background-color: lightgray;">Keys</th>
-                        <th ng-repeat="request in vm.table.requests" class="{{ $index == '0' && 'first-request' || 'compared-request' }}">
-                            Req. #{{ request.id }} {{ $index == '0' && 'Reference' || '' }} <br/>
-                            {{ request.date | date:"d MMM yyyy 'at' H:mm"  }}<br/>
-                            <div ng-if="request.icons.os" class="pull-left">
-                                <img src="{{ request.icons.os }}" width="50" class="img-thumbnail">
-                            </div>
-                            <div ng-if="request.icons.app" class="pull-left">
-                                <img src="{{ request.icons.app }}" width="50" class="img-thumbnail">
-                            </div>
-                            <div ng-if="request.icons.browser" class="pull-left">
-                                <img src="{{ request.icons.browser }}" width="50" class="img-thumbnail">
-                            </div>
-                        </th>
-                    </tr>
-                    <tr ng-repeat="row in vm.table.rows">
-                        <td ng-repeat="cell in row track by $index" class="td-{{ cell.content == 'missing' && 'missing' || '' }} td-{{ row[0].validation }}">{{ cell.content }}</td>
-                    </tr>
-                </table>
-            </div>
+<div class="container">
+    <div class="row" id="search-container">
+        <div class="col-md-10">
+            <input autocomplete="off"
+                   autofocus="autofocus"
+                   id="search-input"
+                   placeholder="Search Requests by Title, ID, BU, device etc (and combination of it)."
+                   type="text"
+                   ng-model="searchString" />
         </div>
 
-        <div class="col-sm-12">
-            <div ng-hide="vm.table.requests && vm.table.requests.length">
-                <div class="col-md-12 no-inputrequest-here">
-                    <h3>No requests found for Media ID: {{ vm.table.media_id }}</h3>
-                </div>
-            </div>
+        <div class="col-md-2">
+            <h4>Event : '{{ vm.table.event }}' </h4>
         </div>
     </div>
+
+    <div ng-hide="vm.table.all_requests && vm.table.all_requests.length">
+        <div class="col-md-12 no-inputrequest-here">
+            Loading...
+        </div>
+    </div>
+</div>
+
+<div class="row row-horizon">
+    <div ng-repeat="request in vm.table.all_requests | filter:searchString">
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <smallinputrequest smallinputrequest="smallinputrequest"></smallinputrequest>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div ng-show="false"> <!-- temporary -->
+            <table border="0">
+                <tr>
+                    <th style="background-color: lightgray;">Keys</th>
+                    <th ng-repeat="request in vm.table.requests" class="{{ $index == '0' && 'first-request' || 'compared-request' }}">
+                        Req. #{{ request.id }} {{ $index == '0' && 'Reference' || '' }} <br/>
+                        {{ request.date | date:"d MMM yyyy 'at' H:mm"  }}<br/>
+                        <div ng-if="request.icons.os" class="pull-left">
+                            <img src="{{ request.icons.os }}" width="50" class="img-thumbnail">
+                        </div>
+                        <div ng-if="request.icons.app" class="pull-left">
+                            <img src="{{ request.icons.app }}" width="50" class="img-thumbnail">
+                        </div>
+                        <div ng-if="request.icons.browser" class="pull-left">
+                            <img src="{{ request.icons.browser }}" width="50" class="img-thumbnail">
+                        </div>
+                    </th>
+                </tr>
+                <tr ng-repeat="row in vm.table.rows">
+                    <td ng-repeat="cell in row track by $index" class="td-{{ cell.content == 'missing' && 'missing' || '' }} td-{{ row[0].validation }}">{{ cell.content }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
 </div>
