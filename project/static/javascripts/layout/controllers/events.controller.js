@@ -3,9 +3,9 @@
 
     angular
         .module('jass.layout.controllers')
-        .controller('RequestsController', RequestsController);
+        .controller('EventsController', EventsController);
 
-    RequestsController.$inject = ['$scope', '$location', 'InputRequests', 'RequestIcons', 'Snackbar', '$routeParams'];
+    EventsController.$inject = ['$scope', '$location', 'InputRequests', 'RequestIcons', 'Snackbar', '$routeParams'];
 
 
     var hashCode = function(s){
@@ -15,7 +15,7 @@
         return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
     };
 
-    function RequestsController($scope, $location, InputRequests, RequestIcons, Snackbar, $routeParams) {
+    function EventsController($scope, $location, InputRequests, RequestIcons, Snackbar, $routeParams) {
         var vm = this;
 
         $scope.inputrequests = [];
@@ -28,7 +28,7 @@
             return $scope.data_row.request_arguments[name];
         };
 
-        $scope.streamsense_fields = $routeParams["f"].split(",");
+        $scope.streamsense_fields = $routeParams["sf"].split(",");
         $scope.comscore_fields = $routeParams["cf"].split(",");
 
         activate();

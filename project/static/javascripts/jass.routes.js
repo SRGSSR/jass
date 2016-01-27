@@ -31,10 +31,11 @@
                 controllerAs: 'vm',
                 templateUrl: '/static/templates/layout/latestrequests.html'})
 
-            .when('/streamsenseevents', {
-                controller: 'RequestsController',
+            .when('/events', {
+                controller: 'EventsController',
                 controllerAs: 'vm',
-                templateUrl: '/static/templates/layout/streamsense_latestrequests.html'})
+                templateUrl: '/static/templates/layout/latestevents.html'})
+
             .when('/comparisons/:media_id/:event', {
                 controller: 'ComparisonsController',
                 controllerAs: 'vm',

@@ -55,7 +55,7 @@
             </div>
             <div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="/inputrequests">
+                    <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         See Latest Requests Live <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
@@ -68,7 +68,7 @@
                         <li><a href="#" ng-click="seeLatestRequests('swi');">SWI</a></li>
                     </ul>
                 </div>
-                <a type="button" class="btn btn-default btn-lg" href="/streamsenseevents?f=ns_ap_device,ns_st_ev,ns_st_ep,ns_st_ci,ns_st_po,ns_st_pn,ns_st_tp,ns_st_cn,ns_st_el,ns_st_cl,ns_st_sl&cf=ns_ap_device,ns_vsite,srg_title">See Streamsense Events Live!</a>
+                <button type="button" class="btn btn-default btn-lg" ng-click="seeLatestEvents();">See Streamsense Events Live!</button>
             </div>
         </div>
     </div>
