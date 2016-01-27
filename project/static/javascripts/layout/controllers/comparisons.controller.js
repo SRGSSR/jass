@@ -48,7 +48,7 @@
                     all_requests = data.data;
                 }
 
-                if (all_requests.length > 11) {
+                if (all_requests.length > 1) {
                     // Taking oldest request as reference
                     vm.table.requests.push(all_requests[all_requests.length-1]);
 
