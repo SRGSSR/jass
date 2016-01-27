@@ -21,39 +21,11 @@
     </div>
 </div>
 
-<div class="row row-horizon">
-    <div ng-repeat="request in vm.table.all_requests | filter:searchString">
-          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+<div class="horizontal-container" id="horizontal-content">
+    <div class="row">
+        <div ng-repeat="request in vm.table.all_requests | filter:searchString" class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
             <smallinputrequest smallinputrequest="smallinputrequest"></smallinputrequest>
         </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        <div ng-show="false"> <!-- temporary -->
-            <table border="0">
-                <tr>
-                    <th style="background-color: lightgray;">Keys</th>
-                    <th ng-repeat="request in vm.table.requests" class="{{ $index == '0' && 'first-request' || 'compared-request' }}">
-                        Req. #{{ request.id }} {{ $index == '0' && 'Reference' || '' }} <br/>
-                        {{ request.date | date:"d MMM yyyy 'at' H:mm"  }}<br/>
-                        <div ng-if="request.icons.os" class="pull-left">
-                            <img src="{{ request.icons.os }}" width="50" class="img-thumbnail">
-                        </div>
-                        <div ng-if="request.icons.app" class="pull-left">
-                            <img src="{{ request.icons.app }}" width="50" class="img-thumbnail">
-                        </div>
-                        <div ng-if="request.icons.browser" class="pull-left">
-                            <img src="{{ request.icons.browser }}" width="50" class="img-thumbnail">
-                        </div>
-                    </th>
-                </tr>
-                <tr ng-repeat="row in vm.table.rows">
-                    <td ng-repeat="cell in row track by $index" class="td-{{ cell.content == 'missing' && 'missing' || '' }} td-{{ row[0].validation }}">{{ cell.content }}</td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-</div>
