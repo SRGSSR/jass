@@ -31,6 +31,10 @@ inputrequest .panel-heading {
     overflow: hidden;
 }
 
+.panel-selected {
+    background-color: #EEEEEE;
+}
+
 inputrequest .inputrequest__meta {
     font-weight: bold;
     text-align: left;

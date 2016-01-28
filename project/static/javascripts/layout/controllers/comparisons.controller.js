@@ -10,16 +10,20 @@
     function ComparisonsController($scope, $routeParams, InputRequests, RequestIcons, Snackbar) {
         var vm = this;
         vm.table = {};
-        vm.table.requests = [];
+        vm.requests = [];
         $scope.searchString = "";
         $scope.viewLoading = false;
+
+        $scope.selectRequest = function(request) {
+            vm.selected_request = request;
+        };
 
         if ($routeParams.event === undefined) {
             Snackbar.error("Missing event");
             console.log("Missing event");
         }
         else {
-            vm.table.event = $routeParams.event;
+            vm.event = $routeParams.event;
             activate();
         }
 
@@ -29,7 +33,7 @@
             }, function(newValue, oldValue, scope) {
                 if (newValue.length < 2) {
                     $scope.viewLoading = false;
-                    vm.table.requests = [];
+                    vm.requests = [];
                 }
                 else {
                     $scope.viewLoading = true;
@@ -42,10 +46,10 @@
 
                 // Handling pagination of the data.
                 if (data.data.results !== undefined && data.data.count !== undefined) {
-                    vm.table.requests = decomposeRequestsArguments(data.data.results);
+                    vm.requests = decomposeRequestsArguments(data.data.results);
                 }
                 else {
-                    vm.table.requests = decomposeRequestsArguments(data.data);
+                    vm.requests = decomposeRequestsArguments(data.data);
                 }
 
                 //for (var j = 0; j < filtered_keys.length; j++) {

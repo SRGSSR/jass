@@ -10,22 +10,54 @@
         </div>
 
         <div class="col-md-2">
-            <h4>Event : '{{ vm.table.event }}' </h4>
+            <h4>Event : '{{ vm.event }}' </h4>
         </div>
     </div>
 
     <div ng-hide="viewLoading" id="search-subtitle">
         <div class="col-md-12 no-inputrequest-here">
-            {{ vm.table.requests.length }} matching requests.
+            {{ vm.requests.length }} matching requests.
         </div>
     </div>
 </div>
 
 <div class="container">
     <div class="row row-horizon">
-        <div ng-repeat="request in vm.table.requests" class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-            <smallinputrequest inputrequest="request"></smallinputrequest>
+        <div ng-repeat="request in vm.requests" class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="panel panel-default" ng-click="selectRequest(request);">
+                <div class="panel-heading">
+                    <strong><a target=_self href="/api/inputrequests/{{ request.id }}">#{{ request.id }}</a></strong>
+                    <span>at {{ request.date | date:"d MMM yyyy 'at' H:mm"  }}</span>
+                </div>
+                <div class="panel-body">
+                    <div ng-if="request.icons.os" class="pull-right">
+                        <img src="{{ request.icons.os }}" width="50" class="img-thumbnail">
+                    </div>
+                    <div ng-if="request.icons.app" class="pull-right">
+                        <img src="{{ request.icons.app }}" width="50" class="img-thumbnail">
+                    </div>
+                    <div ng-if="request.icons.browser" class="pull-right">
+                        <img src="{{ request.icons.browser }}" width="50" class="img-thumbnail">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+
+            <div ng-show="vm.selected_request">
+                <table border="0">
+                    <tr ng-repeat="(key, value) in vm.selected_request.request_arguments">
+                        <td class="col-md-3">{{ key }}</td>
+                        <td class="col-md-9">{{ value }}</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
