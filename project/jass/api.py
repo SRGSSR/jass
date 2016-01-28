@@ -59,7 +59,7 @@ class InputRequestListCreateAPIView(generics.ListCreateAPIView):
             elif k == 'url':
                 token_filter = None
                 for token in v.split(" "):
-                    token_filter = Q(url__contains=token) if token_filter is None else token_filter | Q(url__contains=token)
+                    token_filter = Q(url__contains=token) if token_filter is None else token_filter & Q(url__contains=token)
                 queryset = queryset.filter(token_filter)
             else:
                 queryset = queryset.filter(url__contains=k+'='+v)
