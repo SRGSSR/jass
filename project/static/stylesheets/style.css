@@ -187,3 +187,7 @@ table tr:nth-child(even) {
     }
 }
 
+.img-thumbnail {
+    float: left;
+    display: inline-table;
+}
