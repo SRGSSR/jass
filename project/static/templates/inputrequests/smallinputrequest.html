@@ -1,9 +1,18 @@
 <div class="panel panel-default">
     <div class="panel-heading" style="background-color: hsl({{ inputrequest.srg_test_hash_color }}, 50%, 80%)">
-        <strong>request <a target=_self href="/api/inputrequests/{{ inputrequest.id }}">#{{ inputrequest.id }}</a></strong>
+        <strong><a target=_self href="/api/inputrequests/{{ inputrequest.id }}">#{{ inputrequest.id }}</a></strong>
         <span class="inputrequest__submeta">at {{ inputrequest.date | date:"d MMM yyyy 'at' H:mm"  }}</span>
-        from (IP) <strong>{{ inputrequest.origin }}</strong>
-        <span class="inputrequest__url">{{ inputrequest.url }}</span>
+    </div>
+    <div class="panel-body">
+        <div ng-if="inputrequest.icons.os" class="pull-right">
+            <img src="{{ inputrequest.icons.os }}" width="50" class="img-thumbnail">
+        </div>
+        <div ng-if="inputrequest.icons.app" class="pull-right">
+            <img src="{{ inputrequest.icons.app }}" width="50" class="img-thumbnail">
+        </div>
+        <div ng-if="inputrequest.icons.browser" class="pull-right">
+            <img src="{{ inputrequest.icons.browser }}" width="50" class="img-thumbnail">
+        </div>
     </div>
 </div>
 

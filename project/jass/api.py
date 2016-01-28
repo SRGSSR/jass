@@ -50,14 +50,17 @@ class InputRequestListCreateAPIView(generics.ListCreateAPIView):
                 queryset = queryset.filter(bu_filter)
             elif k == 'origin':
                 queryset = queryset.filter(method=v)
-            elif k == 'url':
-                queryset = queryset.filter(url=v)
             elif k == 'sessionid':
                 queryset = queryset.filter(sessionid=v)
             elif k == 'user_agent':
                 queryset = queryset.filter(user_agent=v)
             elif k == 'method':
                 queryset = queryset.filter(method=v)
+            elif k == 'url':
+                token_filter = None
+                for token in v.split(" "):
+                    token_filter = Q(url__contains=token) if token_filter is None else token_filter | Q(url__contains=token)
+                queryset = queryset.filter(token_filter)
             else:
                 queryset = queryset.filter(url__contains=k+'='+v)
 

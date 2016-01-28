@@ -9,84 +9,79 @@
 
     function ComparisonsController($scope, $routeParams, InputRequests, RequestIcons, Snackbar) {
         var vm = this;
-        vm.table = undefined;
+        vm.table = {};
+        vm.table.requests = [];
+        $scope.searchString = "";
+        $scope.viewLoading = false;
 
         if ($routeParams.event === undefined) {
-            $scope.viewLoading = false;
             Snackbar.error("Missing event");
             console.log("Missing event");
         }
         else {
+            vm.table.event = $routeParams.event;
             activate();
         }
 
         function activate() {
-            $scope.viewLoading = true;
-            $scope.searchString = "";
-
-            vm.table = {};
-            vm.table.event = $routeParams.event;
-
-            InputRequests.all({"ns_st_ev": $routeParams.event}).then(successFn, errorFn);
+            $scope.$watch(function() {
+                return $scope.searchString;
+            }, function(newValue, oldValue, scope) {
+                if (newValue.length < 2) {
+                    $scope.viewLoading = false;
+                }
+                else {
+                    $scope.viewLoading = true;
+                    InputRequests.all({"ns_st_ev": $routeParams.event, "url": newValue}).then(successFn, errorFn);
+                }
+            });
 
             function successFn(data, status, headers, config) {
                 $scope.viewLoading = false;
-                vm.table.all_requests = [];
-                vm.table.filtered_requests = [];
-                vm.table.rows = [];
 
                 // Handling pagination of the data.
                 if (data.data.results !== undefined && data.data.count !== undefined) {
-                    vm.table.all_requests = data.data.results;
+                    vm.table.requests = data.data.results;
                 }
                 else {
-                    vm.table.all_requests = data.data;
+                    vm.table.requests = data.data;
                 }
 
-                if (vm.table.all_requests.length > 1) {
-                    decomposeRequestsArguments();
-                    filterRequests($scope.searchString || "");
+                decomposeRequestsArguments();
 
-                    $scope.$watch(function() {
-                        return $scope.searchString;
-                    }, function(newValue, oldValue, scope) {
-                        filterRequests(newValue);
-                    });
-
-                    //for (var j = 0; j < filtered_keys.length; j++) {
-                    //    var key = filtered_keys[j];
-                    //    var row = [];
-                    //    var key_cell = {'content': key, 'validation': 'unknown'};
-                    //    row.push(key_cell);
-                    //
-                    //    var row_items = [];
-                    //    for (var k = 0; k < vm.table.requests.length; k++) {
-                    //        var cell = {};
-                    //        var req = vm.table.requests[k];
-                    //        if (req.request_arguments[key] != undefined) {
-                    //            cell['content'] = req.request_arguments[key];
-                    //        }
-                    //        else {
-                    //            cell['content'] = 'missing';
-                    //        }
-                    //        row_items.push(cell['content']);
-                    //        row.push(cell);
-                    //    }
-                    //
-                    //    var filtered_row_items = row_items.filter(function(elem, index, self) {
-                    //        return index == self.indexOf(elem);
-                    //    });
-                    //
-                    //    if (filtered_row_items.length == 1) {
-                    //        key_cell['validation'] = "ok";
-                    //    }
-                    //    else {
-                    //        key_cell['validation'] = "different";
-                    //    }
-                    //
-                    //    vm.table.rows.push(row);
-                    //}
-                }
+                //for (var j = 0; j < filtered_keys.length; j++) {
+                //    var key = filtered_keys[j];
+                //    var row = [];
+                //    var key_cell = {'content': key, 'validation': 'unknown'};
+                //    row.push(key_cell);
+                //
+                //    var row_items = [];
+                //    for (var k = 0; k < vm.table.requests.length; k++) {
+                //        var cell = {};
+                //        var req = vm.table.requests[k];
+                //        if (req.request_arguments[key] != undefined) {
+                //            cell['content'] = req.request_arguments[key];
+                //        }
+                //        else {
+                //            cell['content'] = 'missing';
+                //        }
+                //        row_items.push(cell['content']);
+                //        row.push(cell);
+                //    }
+                //
+                //    var filtered_row_items = row_items.filter(function(elem, index, self) {
+                //        return index == self.indexOf(elem);
+                //    });
+                //
+                //    if (filtered_row_items.length == 1) {
+                //        key_cell['validation'] = "ok";
+                //    }
+                //    else {
+                //        key_cell['validation'] = "different";
+                //    }
+                //
+                //    vm.table.rows.push(row);
+                //}
             }
 
             function errorFn(data, status, headers, config) {
@@ -99,8 +94,8 @@
                 // First decompose all url arguments and fill a set of keys...
                 // URL arguments are put into a request_arguments object.
                 var keys = [];
-                for (var i = 0; i < vm.table.all_requests.length; i++) {
-                    var inputrequest = vm.table.all_requests[i];
+                for (var i = 0; i < vm.table.requests.length; i++) {
+                    var inputrequest = vm.table.requests[i];
 
                     (function(req, ks) {
                         var parser = document.createElement('a');
@@ -126,8 +121,11 @@
                 vm.table.keys = filtered_keys;
             }
 
-            function filterRequests(searchString) {
-
+            function getRequestUUID() {
+                return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                    var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+                    return v.toString(16);
+                });
             }
         }
     }

@@ -65,7 +65,6 @@ th {
 th, td {
     border: 1px solid #c5c5c5;
     min-width: 50px;
-    max-width: 200px;
     overflow: hidden;
 }
 
@@ -118,6 +117,10 @@ table tr:nth-child(even) {
     padding-bottom: 20px;
 }
 
+#search-subtitle {
+    padding-bottom: 40px;
+}
+
 #search-input {
     -webkit-appearance: none;
     -webkit-background-clip: border-box;
@@ -160,23 +163,23 @@ table tr:nth-child(even) {
 }
 
 @media (min-width:768px) {
-  .horizontal-container{
-    width:100%;
-  }
-  #horizontal-content{
-    min-height: 100%;
-    height: auto;
-  }
-  #horizontal-content > .row {
-    overflow-x:scroll;
-    overflow-y:hidden;
-    white-space:nowrap;
-  }
-  #horizontal-content > .row [class*="col-lg"], #horizontal-content > .row [class*="col-md"], #horizontal-content > .row [class*="col-sm"] {
-    float:none;
-    display:inline-block;
-    white-space:normal;
-    vertical-align:top;
-  }
+    .horizontal-container{
+        width:100%;
+    }
+    #horizontal-content{
+        min-height: 100%;
+        height: auto;
+    }
+    #horizontal-content > .row {
+        overflow-x:scroll;
+        overflow-y:hidden;
+        white-space:nowrap;
+    }
+    #horizontal-content > .row [class*="col-lg"], #horizontal-content > .row [class*="col-md"], #horizontal-content > .row [class*="col-sm"] {
+        float:none;
+        display:inline-block;
+        white-space:normal;
+        vertical-align:top;
+    }
 }
 

@@ -9,7 +9,7 @@
         var directive = {
             restrict: 'E',
             scope: {
-                smallinputrequest: '='
+                inputrequest: '='
             },
             templateUrl: '/static/templates/inputrequests/smallinputrequest.html'
         };
