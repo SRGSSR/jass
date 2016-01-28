@@ -29,6 +29,7 @@
             }, function(newValue, oldValue, scope) {
                 if (newValue.length < 2) {
                     $scope.viewLoading = false;
+                    vm.table.requests = [];
                 }
                 else {
                     $scope.viewLoading = true;
