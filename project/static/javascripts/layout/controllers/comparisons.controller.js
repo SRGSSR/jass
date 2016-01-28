@@ -42,13 +42,11 @@
 
                 // Handling pagination of the data.
                 if (data.data.results !== undefined && data.data.count !== undefined) {
-                    vm.table.requests = data.data.results;
+                    vm.table.requests = decomposeRequestsArguments(data.data.results);
                 }
                 else {
-                    vm.table.requests = data.data;
+                    vm.table.requests = decomposeRequestsArguments(data.data);
                 }
-
-                decomposeRequestsArguments();
 
                 //for (var j = 0; j < filtered_keys.length; j++) {
                 //    var key = filtered_keys[j];
@@ -91,12 +89,12 @@
                 console.log(data.error);
             }
 
-            function decomposeRequestsArguments() {
+            function decomposeRequestsArguments(requests) {
                 // First decompose all url arguments and fill a set of keys...
                 // URL arguments are put into a request_arguments object.
                 var keys = [];
-                for (var i = 0; i < vm.table.requests.length; i++) {
-                    var inputrequest = vm.table.requests[i];
+                for (var i = 0; i < requests.length; i++) {
+                    var inputrequest = requests[i];
 
                     (function(req, ks) {
                         var parser = document.createElement('a');
@@ -120,6 +118,8 @@
                 }).sort();
 
                 vm.table.keys = filtered_keys;
+
+                return requests;
             }
 
             function getRequestUUID() {
