@@ -48,12 +48,13 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10">
-
             <div ng-show="vm.selected_request">
                 <div>
-                    <strong>Reference Request: <a target=_self href="/api/inputrequests/{{ vm.selected_request.id }}">#{{ vm.selected_request.id }}</a></strong>
-                    <span>{{ vm.selected_request.date | date:"d MMM yyyy 'at' H:mm"  }}</span>
-                    from (IP) <strong>{{ vm.selected_request.origin }}</strong>
+                    <div>
+                        <strong>Reference Request: <a target=_self href="/api/inputrequests/{{ vm.selected_request.id }}">#{{ vm.selected_request.id }}</a></strong>
+                        <span>{{ vm.selected_request.date | date:"d MMM yyyy 'at' H:mm"  }}</span>
+                        from (IP) <strong>{{ vm.selected_request.origin }}</strong>
+                    </div>
                     <div ng-if="vm.selected_request.icons.os">
                         <img src="{{ vm.selected_request.icons.os }}" width="30" class="img-thumbnail">
                     </div>
@@ -64,14 +65,15 @@
                         <img src="{{ vm.selected_request.icons.browser }}" width="30" class="img-thumbnail">
                     </div>
                 </div>
-                <table border="0">
-                    <tr ng-repeat="(key, value) in vm.selected_request.request_arguments">
-                        <td class="col-md-3">{{ key }}</td>
-                        <td class="col-md-9">{{ value }}</td>
-                    </tr>
-                </table>
+                <div>
+                    <table border="0">
+                        <tr ng-repeat="(key, value) in vm.selected_request.request_arguments">
+                            <td class="col-md-3">{{ key }}</td>
+                            <td class="col-md-9">{{ value }}</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-
         </div>
     </div>
 </div>
