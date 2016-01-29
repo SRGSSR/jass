@@ -11,7 +11,7 @@
         var vm = this;
 
         $scope.compareRequests = function(sender) {
-            window.location = "/comparisons/play";
+            window.location = "/comparisons?query=ns_st_ev%3Dplay";
         };
 
         $scope.seeLatestRequests = function(bu) {

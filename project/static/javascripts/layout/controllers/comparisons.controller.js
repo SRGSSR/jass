@@ -18,14 +18,11 @@
             vm.selected_request = request;
         };
 
-        if ($routeParams.event === undefined) {
-            Snackbar.error("Missing event");
-            console.log("Missing event");
+        if ($routeParams.query !== undefined) {
+            $scope.searchString = $routeParams.query+" ";
         }
-        else {
-            vm.event = $routeParams.event;
-            activate();
-        }
+
+        activate();
 
         function activate() {
             $scope.$watch(function() {
