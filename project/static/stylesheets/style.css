@@ -70,6 +70,7 @@ th, td {
     border: 1px solid #c5c5c5;
     min-width: 50px;
     overflow: hidden;
+    max-width: 200px;
 }
 
 .video-cell {

@@ -11,16 +11,83 @@
         var vm = this;
         vm.table = {};
         vm.requests = [];
+        vm.selected_requests = [];
+
         $scope.searchString = "";
         $scope.viewLoading = false;
 
         $scope.selectRequest = function(request) {
-            vm.selected_request = request;
+            var index = vm.selected_requests.indexOf(request);
+            if (index != -1) {
+                vm.selected_requests.splice(index, 1);
+            }
+            else {
+                vm.selected_requests.push(request);
+            }
+
+            $scope.reloadTableRows(vm.selected_requests);
+        };
+
+        $scope.removeSelectedRequest = function(request) {
+            var index = vm.selected_requests.indexOf(request);
+            if (index != -1) {
+                vm.selected_requests.splice(index, 1);
+            }
+            $scope.reloadTableRows(vm.selected_requests);
+        };
+
+        $scope.panelClassForRequest = function(request) {
+            var selected_ids = vm.selected_requests.map(function(obj) {
+                return obj.id;
+            });
+
+            if (selected_ids.indexOf(request.id) != -1) {
+                return "panel-selected";
+            }
+            return "";
         };
 
         if ($routeParams.query !== undefined) {
             $scope.searchString = $routeParams.query+" ";
         }
+
+        $scope.reloadTableRows = function(requests) {
+            vm.table.rows = [];
+
+            for (var j = 0; j < vm.table.keys.length; j++) {
+                var key = vm.table.keys[j];
+                var row = [];
+                var key_cell = {'content': key, 'validation': 'unknown'};
+                row.push(key_cell);
+
+                var row_items = [];
+                for (var k = 0; k < requests.length; k++) {
+                    var cell = {};
+                    var req = requests[k];
+                    if (req.request_arguments[key] != undefined) {
+                        cell['content'] = req.request_arguments[key];
+                    }
+                    else {
+                        cell['content'] = 'missing';
+                    }
+                    row_items.push(cell['content']);
+                    row.push(cell);
+                }
+
+                var filtered_row_items = row_items.filter(function(elem, index, self) {
+                    return index == self.indexOf(elem);
+                });
+
+                if (filtered_row_items.length == 1) {
+                    key_cell['validation'] = "ok";
+                }
+                else {
+                    key_cell['validation'] = "different";
+                }
+
+                vm.table.rows.push(row);
+            }
+        };
 
         activate();
 
@@ -48,40 +115,6 @@
                 else {
                     vm.requests = decomposeRequestsArguments(data.data);
                 }
-
-                //for (var j = 0; j < filtered_keys.length; j++) {
-                //    var key = filtered_keys[j];
-                //    var row = [];
-                //    var key_cell = {'content': key, 'validation': 'unknown'};
-                //    row.push(key_cell);
-                //
-                //    var row_items = [];
-                //    for (var k = 0; k < vm.table.requests.length; k++) {
-                //        var cell = {};
-                //        var req = vm.table.requests[k];
-                //        if (req.request_arguments[key] != undefined) {
-                //            cell['content'] = req.request_arguments[key];
-                //        }
-                //        else {
-                //            cell['content'] = 'missing';
-                //        }
-                //        row_items.push(cell['content']);
-                //        row.push(cell);
-                //    }
-                //
-                //    var filtered_row_items = row_items.filter(function(elem, index, self) {
-                //        return index == self.indexOf(elem);
-                //    });
-                //
-                //    if (filtered_row_items.length == 1) {
-                //        key_cell['validation'] = "ok";
-                //    }
-                //    else {
-                //        key_cell['validation'] = "different";
-                //    }
-                //
-                //    vm.table.rows.push(row);
-                //}
             }
 
             function errorFn(data, status, headers, config) {
@@ -114,20 +147,11 @@
                     })(inputrequest, keys);
                 }
 
-                var filtered_keys = keys.filter(function(elem, index, self) {
+                vm.table.keys = keys.filter(function(elem, index, self) {
                     return index == self.indexOf(elem);
                 }).sort();
 
-                vm.table.keys = filtered_keys;
-
                 return requests;
-            }
-
-            function getRequestUUID() {
-                return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-                    var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-                    return v.toString(16);
-                });
             }
         }
     }
