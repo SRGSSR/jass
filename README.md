@@ -32,3 +32,7 @@ Tools
 - ```~/.virtualenvs/jass_debug/bin/python manage.py collectstatic --noinput```
 - Install fixtures to test:
  - ```~/.virtualenvs/jass_debug/bin/python manage.py loaddata project/jass/fixtures/prod_2015-09-22T11:00.json```
+
+# Test without proxy
+You can simulate new requests with:
+```curl -v -H "Content-Type: application/json"  -d '{ "method":"GET", "url":"http://il.srgssr.ch/integrationlayer/1.0/ue/srf/video/play/test_url.json", "headers": [ {"key":"keyOne","value":"value1"}], "user_agent": "testCurl", "origin": "1.1.1.1" }' http://jass-staging.herokuapp.com/api/inputrequests/```
