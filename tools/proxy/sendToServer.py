@@ -26,12 +26,10 @@ def request(context, flow):
         user_agent = None
         for header in flow.request.headers:
             json_header = {
-                "key": header[0],
-                "value": header[1]
+                "key": header,
+                "value": flow.request.headers[header]
             }
             headers.append(json_header)
-            if header[0] == 'User-Agent':
-                user_agent = header[1]
 
         payload = {
             "method": flow.request.method.upper(),
