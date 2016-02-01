@@ -13,6 +13,7 @@ Tools
 
 - Install PostgreSQL ( ```brew install postgresql``` )
 - Make sure to have PostgreSQL running ( ```postgres -D /usr/local/var/postgres``` for default brew formula )
+- Make sure to have redis running ( ```redis-server``` will say it runs @ ```localhost:6379``` for default install )
 - Create database ( ```createdb jass``` )
 - Download PyCharm community edition (or better)
 
