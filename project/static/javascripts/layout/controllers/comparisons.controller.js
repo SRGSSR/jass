@@ -104,6 +104,7 @@
                     InputRequests.all({"ns_st_ev": $routeParams.event, "url": newValue}).then(successFn, errorFn);
                 }
             });
+            startWebSocket();
 
             function successFn(data, status, headers, config) {
                 $scope.viewLoading = false;
@@ -115,7 +116,9 @@
                 else {
                     vm.requests = decomposeRequestsArguments(data.data);
                 }
+            }
 
+            function startWebSocket() {
                 var ws = new WebSocket('wss://'+$location.host()+'/ws/ws1?subscribe-broadcast&echo');
                 ws.onopen = function() {
                     console.log("websocket connected");
