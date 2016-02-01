@@ -102,6 +102,8 @@ SESSION_REDIS_PREFIX = 'session'
 import dj_database_url
 DATABASES = { 'default': dj_database_url.config(default=os.environ['DATABASE_URL']) }
 
+# Enable Persistent Connections
+DATABASES['default']['CONN_MAX_AGE'] = 500
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -148,3 +150,22 @@ BOWER_INSTALLED_APPS = (
     'snackbarjs',
     'bootstrap-horizon'
 )
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler'
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+        },
+        'testlogger': {
+            'handlers': ['console']
+        }
+    }
+}
