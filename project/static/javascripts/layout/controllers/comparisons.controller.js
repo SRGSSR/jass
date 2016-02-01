@@ -5,9 +5,9 @@
         .module('jass.layout.controllers')
         .controller('ComparisonsController', ComparisonsController);
 
-    ComparisonsController.$inject = ['$scope', '$routeParams', 'InputRequests', 'RequestIcons', 'Snackbar'];
+    ComparisonsController.$inject = ['$scope', '$location', '$routeParams', 'InputRequests', 'RequestIcons', 'Snackbar'];
 
-    function ComparisonsController($scope, $routeParams, InputRequests, RequestIcons, Snackbar) {
+    function ComparisonsController($scope, $location, $routeParams, InputRequests, RequestIcons, Snackbar) {
         var vm = this;
         vm.table = {};
         vm.requests = [];
@@ -115,6 +115,41 @@
                 else {
                     vm.requests = decomposeRequestsArguments(data.data);
                 }
+
+                var ws = new WebSocket('wss://'+$location.host()+'/ws/ws1?subscribe-broadcast&echo');
+                ws.onopen = function() {
+                    console.log("websocket connected");
+                };
+                ws.onmessage = function(e) {
+                    console.log("Received: " + e);
+                    if (e.data !== "--heartbeat--") {
+                        handleMessage(e.data);
+                    }
+                };
+                ws.onerror = function(e) {
+                    console.error(e);
+                };
+                ws.onclose = function(e) {
+                    setTimeout(ws, 1000);
+                    console.log("connection closed, attempting to set timeout to reopen");
+                };
+            }
+
+            function handleMessage(data) {
+                var newrequest = JSON.parse(data);
+                decomposeRequestArguments(newrequest, []);
+                if (newrequest.url.indexOf($scope.searchString) != -1
+                 && vm.requests.reduce(function(v, cV, cI, a) {
+                    if (v == 1) {
+                        if (cV.id == newrequest.id) {
+                            v = 0;
+                        }
+                    }
+                    return v;
+                }, 1)) {
+                    vm.requests.unshift(newrequest);
+                    $scope.$apply();
+                }
             }
 
             function errorFn(data, status, headers, config) {
@@ -130,21 +165,7 @@
                 for (var i = 0; i < requests.length; i++) {
                     var inputrequest = requests[i];
 
-                    (function(req, ks) {
-                        var parser = document.createElement('a');
-                        parser.href = req.url;
-                        var tmp_arguments = parser.search.split('&');
-                        req.request_arguments = {};
-                        for (var j = 0; j < tmp_arguments.length; j++) {
-                            var arg = tmp_arguments[j].split('=');
-                            if (arg[0][0] === "?") {
-                                arg[0] = arg[0].substring(1);
-                            }
-                            req.request_arguments[arg[0]] = arg[1];
-                            ks.push(arg[0]);
-                        }
-                        RequestIcons.findAll(req);
-                    })(inputrequest, keys);
+                    decomposeRequestArguments(inputrequest, keys);
                 }
 
                 vm.table.keys = keys.filter(function(elem, index, self) {
@@ -152,6 +173,22 @@
                 }).sort();
 
                 return requests;
+            }
+
+            function decomposeRequestArguments(req, ks) {
+                var parser = document.createElement('a');
+                parser.href = req.url;
+                var tmp_arguments = parser.search.split('&');
+                req.request_arguments = {};
+                for (var j = 0; j < tmp_arguments.length; j++) {
+                    var arg = tmp_arguments[j].split('=');
+                    if (arg[0][0] === "?") {
+                        arg[0] = arg[0].substring(1);
+                    }
+                    req.request_arguments[arg[0]] = arg[1];
+                    ks.push(arg[0]);
+                }
+                RequestIcons.findAll(req);
             }
         }
     }
