@@ -17,7 +17,7 @@ from django.core.wsgi import get_wsgi_application
 from ws4redis.uwsgi_runserver import uWSGIWebsocketServer
 
 logger = logging.getLogger('testlogger')
-logger.info('Django starting ' + settings.DEBUG)
+logger.info('Django starting ' + str(settings.DEBUG))
 
 if settings.DEBUG:
     application = Cling(get_wsgi_application())
