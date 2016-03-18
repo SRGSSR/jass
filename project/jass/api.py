@@ -32,7 +32,10 @@ class InputRequestListCreateAPIView(generics.ListCreateAPIView):
     pagination_class = InputRequestsPagination
 
     def post(self, request, *args, **kwargs):
-        ConnectedProxy.objects.update_or_create(externalIp=get_client_ip(request), localIp="localIp", name="unkownProxy")
+        try:
+            ConnectedProxy.objects.update_or_create(externalIp=get_client_ip(request), localIp="localIp", name="unkownProxy")
+        except Exception as e:
+            print e
         result = super(InputRequestListCreateAPIView, self).post(request, args, kwargs)
         if result.status_code == 201:
             message = RedisMessage(json.dumps(result.data))
