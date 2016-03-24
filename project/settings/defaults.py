@@ -140,15 +140,15 @@ STATICFILES_FINDERS = (
 
 BOWER_COMPONENTS_ROOT = os.path.join(ROOT_PATH, 'components')
 BOWER_INSTALLED_APPS = (
-    'jquery',
-    'underscore',
-    'bootstrap',
-    'angular',
-    'angular-route',
-    'angular-resource',
-    'angular-cookies',
-    'snackbarjs',
-    'bootstrap-horizon'
+    'jquery#2.2.0',
+    'underscore#1.8.3',
+    'bootstrap#3.3.6',
+    'angular#1.4.9',
+    'angular-route#1.4.9',
+    'angular-resource#1.4.9',
+    'angular-cookies#1.4.9',
+    'snackbarjs#1.0.0',
+    'bootstrap-horizon#0.1.0'
 )
 
 LOGGING = {
