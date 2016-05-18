@@ -20,7 +20,7 @@ def start(context, argv):
 
 @concurrent
 def request(context, flow):
-    if flow.request.host in ['il.srf.ch', 'il.srgssr.ch', 'b.scorecardresearch.com', 'sb.scorecardresearch.com']:
+    if flow.request.host in ['il.srf.ch', 'il.srgssr.ch', 'b.scorecardresearch.com', 'sb.scorecardresearch.com', 'srf.wemfbox.ch', 'rts.wemfbox.ch', 'rsi.wemfbox.ch', 'rtr.wemfbox.ch', 'swi.wemfbox.ch']:
 
         headers = []
         user_agent = None
